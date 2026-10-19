@@ -345,6 +345,23 @@
     </div>
   </div>
 
+  <!-- Mobile Sticky Mini-Player Dock -->
+  <div class="mobile-mini-player" id="mobile-mini-player" aria-label="Audio Playback Dock">
+    <div class="mini-progress-bar">
+      <div class="mini-progress-fill" id="mini-progress-fill"></div>
+    </div>
+    <div class="mini-player-content">
+      <button class="mini-play-btn" id="mini-play-btn" type="button" aria-label="Play or pause audio">
+        <span id="mini-play-icon">&#9654;</span>
+      </button>
+      <div class="mini-info" id="mini-info" role="button" tabindex="0" aria-label="Scroll to audio player">
+        <span class="mini-segment-title" id="mini-segment-title">1. Introduction</span>
+        <span class="mini-time" id="mini-time">0:00 / 0:00</span>
+      </div>
+      <button class="mini-action-btn" id="mini-scroll-btn" type="button" aria-label="Scroll to player" title="Return to player">&#8679;</button>
+    </div>
+  </div>
+
   <!-- Lesson Data Contract for player.js -->
   <script id="lesson-data" type="application/json">
   {

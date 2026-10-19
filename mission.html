@@ -8,12 +8,12 @@
   <style>
     .mission-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      margin: 24px 0;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin: 20px 0;
     }
-    @media (max-width: 680px) {
-      .mission-grid { grid-template-columns: 1fr; }
+    @media (min-width: 641px) {
+      .mission-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
     }
     .status-badge {
       display: inline-block;
@@ -146,7 +146,7 @@
     </div>
 
     <!-- Footer Navigation -->
-    <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-light); display: flex; justify-content: space-between; font-family: var(--font-sans); font-size: 14px;">
+    <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-light); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-family: var(--font-sans); font-size: 14px;">
       <a href="index.html" style="color: var(--accent-blue); text-decoration: none;">&larr; Folio Table of Contents</a>
       <a href="lessons/0003-shasei-and-wabi-sabi.html" style="color: var(--accent-blue); font-weight: bold; text-decoration: none;">Launch Chapter III: The Art of Seeing &rarr;</a>
     </div>

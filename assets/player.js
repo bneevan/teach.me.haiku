@@ -103,6 +103,15 @@
         pauseBanner: document.getElementById("checkpoint-banner"),
         evidenceText: document.getElementById("evidence-text"),
         copyBtn: document.getElementById("copy-evidence-btn"),
+        // Mobile Sticky Audio Companion Dock
+        miniPlayer: document.getElementById("mobile-mini-player"),
+        miniPlayBtn: document.getElementById("mini-play-btn"),
+        miniPlayIcon: document.getElementById("mini-play-icon"),
+        miniProgressFill: document.getElementById("mini-progress-fill"),
+        miniSegmentTitle: document.getElementById("mini-segment-title"),
+        miniTime: document.getElementById("mini-time"),
+        miniScrollBtn: document.getElementById("mini-scroll-btn"),
+        miniInfo: document.getElementById("mini-info"),
       };
 
       this.init();
@@ -124,6 +133,8 @@
       this.bindAudioEvents();
       this.bindControls();
       this.bindQuizzes();
+      this.bindPronunciations();
+      this.bindMobileMiniPlayer();
       this.updateActiveSegment(0);
       this.updateEvidenceText();
     }
@@ -218,6 +229,78 @@
       });
     }
 
+    bindPronunciations() {
+      let activePronounceAudio = null;
+      document.querySelectorAll(".pronounce-btn").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const src = btn.getAttribute("data-audio-src");
+          if (!src) return;
+
+          // Pause main narration if currently playing
+          if (this.audio && !this.audio.paused) {
+            this.togglePlay();
+          }
+
+          if (activePronounceAudio) {
+            activePronounceAudio.pause();
+            document.querySelectorAll(".pronounce-btn.playing").forEach((b) => b.classList.remove("playing"));
+          }
+
+          try {
+            activePronounceAudio = new Audio(src);
+            btn.classList.add("playing");
+            activePronounceAudio.addEventListener("ended", () => {
+              btn.classList.remove("playing");
+            });
+            activePronounceAudio.addEventListener("pause", () => {
+              btn.classList.remove("playing");
+            });
+            activePronounceAudio.play().catch(() => {
+              btn.classList.remove("playing");
+            });
+          } catch {
+            btn.classList.remove("playing");
+          }
+        });
+      });
+    }
+
+    bindMobileMiniPlayer() {
+      if (!this.dom.miniPlayer) return;
+
+      if (this.dom.miniPlayBtn) {
+        this.dom.miniPlayBtn.addEventListener("click", () => this.togglePlay());
+      }
+
+      const scrollToPlayer = () => {
+        const playerWidget = document.querySelector(".player-widget");
+        if (playerWidget) {
+          playerWidget.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      };
+
+      if (this.dom.miniScrollBtn) {
+        this.dom.miniScrollBtn.addEventListener("click", scrollToPlayer);
+      }
+      if (this.dom.miniInfo) {
+        this.dom.miniInfo.addEventListener("click", scrollToPlayer);
+      }
+
+      const checkVisibility = () => {
+        const playerWidget = document.querySelector(".player-widget");
+        if (!playerWidget || !this.dom.miniPlayer) return;
+        const rect = playerWidget.getBoundingClientRect();
+        const isOffscreen = rect.bottom < 50;
+        this.dom.miniPlayer.classList.toggle("is-visible", isOffscreen);
+      };
+
+      window.addEventListener("scroll", checkVisibility, { passive: true });
+      window.addEventListener("resize", checkVisibility, { passive: true });
+      checkVisibility();
+    }
+
     handleQuizAnswer(chk, selectedIdx, optionButtons, feedbackEl) {
       if (!this.quizResults[chk.id]) {
         this.quizResults[chk.id] = { passed: false, attempts: 0 };
@@ -287,13 +370,22 @@
 
     updateActiveSegment(currentTime) {
       const seg = determineActiveSegment(this.timelines, currentTime);
-      if (!seg || seg.id === (this.activeSegment && this.activeSegment.id)) return;
+      if (!seg) return;
 
+      if (this.dom.miniSegmentTitle && seg.title) {
+        this.dom.miniSegmentTitle.textContent = `${seg.index + 1}. ${seg.title}`;
+      }
+
+      if (seg.id === (this.activeSegment && this.activeSegment.id)) return;
       this.activeSegment = seg;
 
       // Update pills
       document.querySelectorAll(".segment-pill").forEach((pill) => {
-        pill.classList.toggle("active", pill.dataset.segmentId === seg.id);
+        const isActive = pill.dataset.segmentId === seg.id;
+        pill.classList.toggle("active", isActive);
+        if (isActive && pill.scrollIntoView) {
+          pill.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+        }
       });
 
       // Update visual card
@@ -303,11 +395,21 @@
     }
 
     updateTimeDisplay(currentTime) {
+      const formatted = `${formatTime(currentTime)} / ${formatTime(this.totalDuration)}`;
       if (this.dom.timeDisplay) {
-        this.dom.timeDisplay.textContent = `${formatTime(currentTime)} / ${formatTime(this.totalDuration)}`;
+        this.dom.timeDisplay.textContent = formatted;
       }
-      if (this.dom.scrubber && this.totalDuration > 0) {
-        this.dom.scrubber.value = (currentTime / this.totalDuration) * 100;
+      if (this.dom.miniTime) {
+        this.dom.miniTime.textContent = formatted;
+      }
+      if (this.totalDuration > 0) {
+        const pct = (currentTime / this.totalDuration) * 100;
+        if (this.dom.scrubber) {
+          this.dom.scrubber.value = pct;
+        }
+        if (this.dom.miniProgressFill) {
+          this.dom.miniProgressFill.style.width = `${pct}%`;
+        }
       }
     }
 
@@ -339,6 +441,9 @@
     setPlayState(isPlaying) {
       if (this.dom.playIcon) {
         this.dom.playIcon.textContent = isPlaying ? "⏸" : "▶";
+      }
+      if (this.dom.miniPlayIcon) {
+        this.dom.miniPlayIcon.textContent = isPlaying ? "⏸" : "▶";
       }
     }
 
