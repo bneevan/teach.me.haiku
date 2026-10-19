@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter III: The Art of Seeing &bull; Shasei, Wabi-Sabi &amp; Ichibutsu-jitate &bull; Haiku Studio</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+  <style>
+    .shasei-comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin: 20px 0;
+    }
+    @media (max-width: 680px) {
+      .shasei-comparison { grid-template-columns: 1fr; }
+    }
+    .lens-box {
+      border-radius: 6px;
+      padding: 18px;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    .lens-editorial {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-left: 4px solid #dc2626;
+    }
+    .lens-shasei {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-left: 4px solid #16a34a;
+    }
+
+    .aesthetic-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+    @media (max-width: 680px) {
+      .aesthetic-grid { grid-template-columns: 1fr; }
+    }
+    .aesthetic-card {
+      background: #fdfcf9;
+      border: 1px solid var(--border-light);
+      border-radius: 6px;
+      padding: 16px 20px;
+    }
+    .aesthetic-title {
+      font-family: var(--font-serif);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--accent-gold);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .ichibutsu-flow {
+      background: #faf8f2;
+      border: 1px solid var(--border-light);
+      border-radius: 6px;
+      padding: 20px;
+      margin: 18px 0;
+    }
+    .flow-steps {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+    .flow-step {
+      flex: 1;
+      min-width: 180px;
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      padding: 12px 14px;
+      border-radius: 4px;
+      font-size: 14px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+    .flow-step-num {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: var(--accent-blue);
+      font-size: 12px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="lesson-container">
+    <!-- Running Header (Book Folio Bar) -->
+    <nav class="lesson-nav" aria-label="Book Navigation">
+      <a href="../index.html" class="dashboard-link">&lang; Course Dashboard</a>
+      <span class="lesson-index-badge">Chapter III of V &bull; 4:35</span>
+    </nav>
+
+    <!-- Chapter Header -->
+    <header class="lesson-header">
+      <div class="lesson-badge">Chapter III &bull; Audio-Led Instruction</div>
+      <h1 class="lesson-title">The Art of Seeing: Shasei, Wabi-Sabi &amp; Ichibutsu-jitate</h1>
+      <p style="color: var(--text-muted); font-size: 16px; font-style: italic; margin-bottom: 12px;">
+        On empirical sketching from life, finding the sacred in the weathered, and mastering the single-object poem.
+      </p>
+      <div class="mission-outcome-box">
+        <strong>Observable Milestone:</strong> (from <a href="../mission.html" style="color: #1e3a8a; text-decoration: underline;">MISSION.md</a>) Capture empirical reality through objective sensory sketching (<a href="../glossary.html#shasei" style="color: #1e3a8a; text-decoration: underline;"><em>shasei</em></a>), compose a resonant single-object poem (<a href="../glossary.html#ichibutsu-jitate" style="color: #1e3a8a; text-decoration: underline;"><em>ichibutsu-jitate</em></a>) without overt two-part juxtaposition, and evoke the weathered transience of <a href="../glossary.html#wabi-sabi" style="color: #1e3a8a; text-decoration: underline;"><em>wabi-sabi</em></a> and <a href="../glossary.html#mono-no-aware" style="color: #1e3a8a; text-decoration: underline;"><em>mono no aware</em></a> by banishing sentimental adjectives.
+      </div>
+    </header>
+
+    <!-- Audio Player Widget -->
+    <section class="player-widget" aria-label="Audio Chapter Recitation">
+      <audio id="lesson-audio" src="../assets/audio/0003-shasei-and-wabi-sabi.m4a" preload="auto"></audio>
+
+      <div class="player-top-row">
+        <div class="player-main-controls">
+          <button id="player-play-btn" class="play-btn" aria-label="Play recitation">
+            <span id="player-play-icon" style="font-size: 20px;">▶</span>
+          </button>
+          <div id="player-time" class="player-time-display">0:00 / 4:35</div>
+        </div>
+
+        <div class="speed-selector" aria-label="Playback speed">
+          <button class="speed-btn active" data-speed="1.0">1.0&times;</button>
+          <button class="speed-btn" data-speed="1.25">1.25&times;</button>
+          <button class="speed-btn" data-speed="1.5">1.5&times;</button>
+        </div>
+      </div>
+
+      <div class="scrub-container">
+        <input type="range" id="player-scrubber" class="scrub-slider" min="0" max="100" value="0" aria-label="Audio scrubber">
+      </div>
+
+      <!-- Segment Timeline Pills -->
+      <nav class="timeline-pills" aria-label="Chapter sections">
+        <button class="segment-pill active" data-segment-id="seg-motivation">1. Lens of Shasei</button>
+        <button class="segment-pill" data-segment-id="seg-principle">2. Wabi-Sabi &amp; Time</button>
+        <button class="segment-pill" data-segment-id="seg-ichibutsu">3. Single-Object Poem</button>
+        <button class="segment-pill checkpoint" data-segment-id="chk-1">&quest; Checkpoint 1</button>
+        <button class="segment-pill" data-segment-id="seg-contrast">4. Adjective Poison</button>
+        <button class="segment-pill" data-segment-id="seg-examples">5. Shiki &amp; Buson</button>
+        <button class="segment-pill checkpoint" data-segment-id="chk-2">&quest; Checkpoint 2</button>
+        <button class="segment-pill" data-segment-id="seg-summary">6. The Ginko Walk</button>
+      </nav>
+    </section>
+
+    <!-- Checkpoint Notification Banner -->
+    <div id="checkpoint-banner" class="checkpoint-pause-banner" role="alert">
+      <span>&#9208; Narration Paused: Please complete the retrieval checkpoint below to verify understanding before audio continues.</span>
+    </div>
+
+    <!-- Synchronized Visual Content Cards -->
+    <main class="visual-cards-section">
+      <!-- Card 1: Motivation -->
+      <article id="card-motivation" class="visual-card active">
+        <h3>1. The Lens of <em>Shasei</em>: Stop Writing &ldquo;Poetry&rdquo;</h3>
+        <p>The single greatest obstacle for poets is the impulse to sound profound. In the late 19th century, master <strong>Masaoka Shiki</strong> rescued haiku from stale mannerisms with a revolutionary principle borrowed from Western plein-air painting: <a href="../glossary.html#shasei" style="color: var(--accent-blue);"><strong><em>shasei</em> (写生)</strong></a>&mdash;sketching directly from life.</p>
+
+        <div class="shasei-comparison">
+          <div class="lens-box lens-editorial">
+            <strong style="color: #991b1b; display: block; margin-bottom: 6px;">The Editorial Trap (Ego-Led)</strong>
+            <em>&ldquo;I gaze upon the tragic forest, feeling the eternal sorrow of autumn as winter approaches.&rdquo;</em>
+            <div style="font-size: 13px; color: #7f1d1d; margin-top: 8px;">
+              Tells the reader what to feel; clutters the scene with emotional claims and philosophical posturing.
+            </div>
+          </div>
+
+          <div class="lens-box lens-shasei">
+            <strong style="color: #166534; display: block; margin-bottom: 6px;">The Shasei Camera (Reality-Led)</strong>
+            <em>&ldquo;bare oak &mdash; / cold drizzle clicking / against the telegraph wire&rdquo;</em>
+            <div style="font-size: 13px; color: #14532d; margin-top: 8px;">
+              Records empirical sensory facts. The sadness is not named; it arises organically in the reader&rsquo;s mind.
+            </div>
+          </div>
+        </div>
+        <p class=\"caption\">Audio focus: Why a detached, honest camera lens has more emotional power than an emotional poet.</p>
+      </article>
+
+      <!-- Card 2: Wabi-Sabi & Mono no Aware -->
+      <article id="card-principle" class="visual-card">
+        <h3>2. The Aesthetics of Imperfection: <em>Wabi-Sabi</em> &amp; <em>Mono no Aware</em></h3>
+        <p>Where Western classicism venerates pristine symmetry and eternal monuments, haiku poetics turns its eye toward the transient, humble, and weathered.</p>
+
+        <div class="aesthetic-grid">
+          <div class="aesthetic-card">
+            <div class="aesthetic-title">
+              <span>&#10087;</span>
+              <span><a href="../glossary.html#wabi-sabi" style="color: inherit; text-decoration: none;">Wabi-Sabi (侘寂)</a></span>
+            </div>
+            <p style="font-size: 15px; line-height: 1.6; color: var(--text-main);">
+              <strong>The beauty of the weathered, imperfect, and modest.</strong> A rusted hinge, a warped porch board, a chipped ceramic bowl, peeling green paint on a wooden skiff. It embraces the natural patina of time and wear.
+            </p>
+          </div>
+
+          <div class="aesthetic-card">
+            <div class="aesthetic-title">
+              <span>&#10087;</span>
+              <span><a href="../glossary.html#mono-no-aware" style="color: inherit; text-decoration: none;">Mono no Aware (物の哀れ)</a></span>
+            </div>
+            <p style="font-size: 15px; line-height: 1.6; color: var(--text-main);">
+              <strong>The pathos of transience.</strong> The gentle, wistful awareness that all things pass away. Drifting cherry petals in a gutter, the smoke of burning dry leaves, autumn dusk arriving ten minutes earlier.
+            </p>
+          </div>
+        </div>
+
+        <div style="background: #faf8f2; border-left: 4px solid var(--accent-gold); padding: 14px 18px; border-radius: 4px; font-size: 15px; margin-top: 12px;">
+          <em>The Rule of Restraint:</em> Never describe an object as &ldquo;old&rdquo;, &ldquo;weathered&rdquo;, or &ldquo;sad&rdquo;. Name the physical detail that reveals the wear: <em>flaking rust</em>, <em>sun-bleached cedar</em>, <em>curled edges</em>.
+        </div>
+      </article>
+
+      <!-- Card 3: Ichibutsu-jitate -->
+      <article id="card-ichibutsu" class="visual-card">
+        <h3>3. Beyond Juxtaposition: The Art of <em>Ichibutsu-jitate</em></h3>
+        <p>In Chapters I and II, we relied on <a href="../glossary.html#toriawase" style="color: var(--accent-blue);"><em>toriawase</em></a>: slamming two distinct images across a cut. But what if you are captivated by a solitary subject? Master poets turn to <a href="../glossary.html#ichibutsu-jitate" style="color: var(--accent-blue);"><strong><em>ichibutsu-jitate</em> (一物仕立て)</strong></a>&mdash;the &ldquo;one-thing composition.&rdquo;</p>
+
+        <div class="ichibutsu-flow">
+          <strong style="color: var(--text-main); font-size: 16px;">The 3-Beat Internal Transformation Formula:</strong>
+          <p style="font-size: 14px; color: var(--text-muted); margin-top: 4px;">
+            Instead of colliding two objects, observe a single subject shifting across time, posture, or stillness:
+          </p>
+
+          <div class="flow-steps">
+            <div class="flow-step">
+              <div class="flow-step-num">Line 1: Stance / Anchor</div>
+              <strong>The Subject Identified:</strong> Ground the physical entity in space (e.g. <em>a dry oak leaf</em>).
+            </div>
+            <div class="flow-step">
+              <div class="flow-step-num">Line 2: Micro-Shift</div>
+              <strong>The Physical Motion:</strong> Describe its subtle kinetic transition (e.g. <em>spinning in the river eddy</em>).
+            </div>
+            <div class="flow-step">
+              <div class="flow-step-num">Line 3: Settling Rest</div>
+              <strong>The New Equilibrium:</strong> The motion resolves into stillness (e.g. <em>snags on sunken stone</em>).
+            </div>
+          </div>
+        </div>
+        <p class="caption">Audio focus: How internal movement replaces the need for a second contrasting image.</p>
+      </article>
+
+      <!-- Card 4: Checkpoint 1 -->
+      <article id="card-chk-1" class="visual-card checkpoint-card">
+        <h4>Checkpoint 1: The Shasei Filter</h4>
+        <p style="margin-bottom: 14px; font-size: 16px;">
+          Which of the following versions of a poem best embodies Masaoka Shiki&rsquo;s principle of <em>shasei</em> (sketching directly from empirical reality)?
+        </p>
+        <div class="options-list">
+          <button class="option-btn" data-index="0">
+            a heartbroken lover &mdash; / weeping beneath the tragic willow / in the lonely twilight
+          </button>
+          <button class="option-btn" data-index="1">
+            black oak branch &mdash; / cold rain clicking against / the rusted tractor seat
+          </button>
+          <button class="option-btn" data-index="2">
+            the majesty of the cosmos / mirrored in the spiritual beauty / of a mountain stream
+          </button>
+          <button class="option-btn" data-index="3">
+            I feel so grateful today &mdash; / walking peacefully through the woods / enjoying Mother Nature
+          </button>
+        </div>
+        <div class="checkpoint-feedback"></div>
+      </article>
+
+      <!-- Card 5: Adjective Poison -->
+      <article id="card-contrast" class="visual-card">
+        <h3>4. Adjective Poison &amp; The Concrete Verb</h3>
+        <p>Adjectives are the poison of haiku because they rob the reader of their own sensory discovery. Compare these revisions:</p>
+
+        <div style="margin: 16px 0; border: 1px solid var(--border-light); border-radius: 6px; overflow: hidden;">
+          <table style="width: 100%; border-collapse: collapse; font-family: var(--font-sans); font-size: 14px;">
+            <thead>
+              <tr style="background: #f7f4ed; border-bottom: 1px solid var(--border-light); text-align: left;">
+                <th style="padding: 10px 14px; width: 45%;">Adjective-Bloated (Amateur)</th>
+                <th style="padding: 10px 14px; width: 55%;">Noun &amp; Verb Shasei (Master)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid var(--border-light);">
+                <td style="padding: 12px 14px; color: #991b1b;">
+                  <em>a cold, depressing rain<br>on the sad abandoned farm<br>feeling lonely</em>
+                </td>
+                <td style="padding: 12px 14px; color: #166534; font-weight: 500;">
+                  <em>november rain &mdash;<br>an empty feed trough fills<br>with yellow pine needles</em>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding: 12px 14px; color: #991b1b;">
+                  <em>beautiful bright morning<br>cheerful birds singing joyfully<br>such sweet blossoms</em>
+                </td>
+                <td style="padding: 12px 14px; color: #166534; font-weight: 500;">
+                  <em>sun on the sill &mdash;<br>a sparrow shakes dew<br>from the cherry branch</em>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size: 15px; color: var(--text-muted); line-height: 1.6;">
+          <strong>Notice:</strong> In the right-hand column, not a single emotion is declared. The feed trough filling with needles evokes abandonment far more intimately than the word &ldquo;depressing&rdquo; ever could.
+        </p>
+      </article>
+
+      <!-- Card 6: Masterworks: Shiki & Buson -->
+      <article id="card-examples" class="visual-card">
+        <h3>5. Masterwork Deep Dives: Shiki &amp; Buson</h3>
+        <p>Examine how the two greatest sensory painters in haiku history record empirical moments:</p>
+
+        <div class="poem-card">
+          <span class="technique-tag">Masaoka Shiki (1895) &bull; Sensory Concreteness</span>
+          <div class="poem-lines">
+            I bite into a persimmon &mdash;<br>
+            a bell tolls,<br>
+            Hōryū-ji temple.
+          </div>
+          <div class="poem-meta">
+            <em>Analysis:</em> The bitter-sweet orange taste of autumn fruit directly juxtaposed with the low acoustic resonance of an ancient temple bell. Taste meets hearing; the temporal harvest meets eternal stone. Zero poetic embellishment.
+          </div>
+        </div>
+
+        <div class="poem-card" style="border-left-color: #0284c7;">
+          <span class="technique-tag" style="background: #e0f2fe; color: #0369a1;">Yosa Buson &bull; Pure Ichibutsu-jitate</span>
+          <div class="poem-lines">
+            A single petal<br>
+            of the cherry blossom fell &mdash;<br>
+            then another, then a petal.
+          </div>
+          <div class="poem-meta">
+            <em>Analysis:</em> No second contrasting image. The entire poem focuses with microscopic stillness on the descending cherry blossoms. The repetition mimics the slow, inexorable departure of spring (<a href="../glossary.html#mono-no-aware" style="color: var(--accent-blue);"><em>mono no aware</em></a>).
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 7: Checkpoint 2 -->
+      <article id="card-chk-2" class="visual-card checkpoint-card">
+        <h4>Checkpoint 2: Ichibutsu-jitate Diagnosis</h4>
+        <p style="margin-bottom: 14px; font-size: 16px;">
+          Which of the following compositions operates as an <strong>ichibutsu-jitate</strong> (single-object focus) rather than a two-image juxtaposition (<em>toriawase</em>)?
+        </p>
+        <div class="options-list">
+          <button class="option-btn" data-index="0">
+            summer thunderstorm &mdash; / on the screen door / a green cicada
+          </button>
+          <button class="option-btn" data-index="1">
+            autumn dusk &mdash; / a billboard advertisement / for fresh peaches
+          </button>
+          <button class="option-btn" data-index="2">
+            a single cherry petal falls &mdash; / then another / then a petal
+          </button>
+          <button class="option-btn" data-index="3">
+            dentist waiting room &mdash; / the fish in the aquarium / swimming in circles
+          </button>
+        </div>
+        <div class="checkpoint-feedback"></div>
+      </article>
+
+      <!-- Card 8: Summary & Practice -->
+      <article id="card-summary" class="visual-card">
+        <h3>6. Synthesis &amp; The Backyard <em>Ginko</em> Exercise</h3>
+        <p>You have now expanded your repertoire from electric two-image cuts to the quiet mastery of <em>shasei</em> and the single-object poem.</p>
+
+        <div style="background: #fdfbf7; border: 1px solid var(--border-light); padding: 20px; border-radius: 6px; margin: 18px 0;">
+          <h4 style="margin-bottom: 8px; color: var(--accent-gold);">Your Ginko (Haiku Walk) Assignment:</h4>
+          <ol style="margin-left: 20px; font-size: 16px; line-height: 1.7;">
+            <li><strong>Step Outside:</strong> Take a 10-minute walk without your phone or headphones.</li>
+            <li><strong>Hunt for Wabi-Sabi:</strong> Look for one weathered, chipped, rusted, or decaying object (a warped plank, cracked pavement weed, rusted padlock).</li>
+            <li><strong>Draft in Ichibutsu-jitate:</strong> Write a 3-line verse focused solely on that object. Trace its physical stance and motion.</li>
+            <li><strong>The Adjective Ban:</strong> Eliminate every single adjective of emotion or value judgment. Let the sensory noun and verb speak for themselves.</li>
+          </ol>
+        </div>
+
+        <div style="margin-top: 18px; padding: 14px; background: #fafaf9; border: 1px solid var(--border-light); border-radius: 6px; font-family: var(--font-sans); font-size: 14px;">
+          <strong>Workspace Documents &amp; Tools:</strong>
+          <div style="margin-top: 6px; display: flex; gap: 14px; flex-wrap: wrap;">
+            <a href="../index.html" style="color: var(--accent-blue); font-weight: bold;">Folio Dashboard</a> &bull;
+            <a href="../mission.html" style="color: var(--accent-blue); font-weight: bold;">Mission</a> &bull;
+            <a href="../glossary.html#shasei" style="color: var(--accent-blue); font-weight: bold;">Shasei Definition</a> &bull;
+            <a href="../reference/poetic-imagery-cheatsheet.html" style="color: var(--accent-blue); font-weight: bold;">Imagery Plates</a>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <!-- Demonstrated Learning Evidence Block -->
+    <section class="evidence-section">
+      <h3>Demonstrated Learning Evidence</h3>
+      <p style="font-size: 14px; color: var(--text-muted);">
+        When you complete the checkpoints above, this block records your verified mastery for the workspace learning records.
+      </p>
+      <div id="evidence-text" class="evidence-box">Loading evidence record...</div>
+      <button id="copy-evidence-btn" class="copy-evidence-btn">Copy Evidence to Clipboard</button>
+    </section>
+
+    <!-- Complete Audio Transcript Expander -->
+    <details class="transcript-details">
+      <summary>View Complete Spoken Narration Transcript</summary>
+      <div style="margin-top: 14px; font-size: 15px; line-height: 1.7; color: var(--text-muted);">
+        <p><strong>1. The Lens of Shasei:</strong> Welcome to Lesson Three. In our previous sessions, you mastered the electric cut, the seasonal code of kigo, and the distance between images. Today, we confront the single biggest trap in all of poetry: the urge to sound poetic. In late nineteenth-century Japan, the master Masaoka Shiki revolutionized haiku with a single radical concept borrowed from Western painting: shasei, which means sketching directly from life. Shiki realized that when a poet tries to be profound, they end up writing clichés. But when a poet acts like a detached, honest camera lens, the world reveals its own quiet power. Today, you will learn to see without editorializing, to discover the sacred beauty in the weathered and broken, and to master the single-object poem.</p>
+        <p style="margin-top: 10px;"><strong>2. Wabi-Sabi and the Imperfect World:</strong> Western literature often worships the monumental, the eternal, and the pristine: marble statues, golden crowns, and triumphant heroes. Japanese poetics, by contrast, turns its gaze toward wabi-sabi and mono no aware. Wabi-sabi is the austere beauty of things that are imperfect, impermanent, and incomplete: a rusted gate hinge, peeling paint on an old barn, a cracked celadon teacup, or a dry thistle rattling in the wind. Mono no aware is the gentle ache of time slipping away: blossom petals washing down a gutter, or the chill in a room after the heater shuts off. When you write haiku, you do not need to invent drama. The patina of age and the mark of time already carry profound emotional weight. Your task is simply to notice them.</p>
+        <p style="margin-top: 10px;"><strong>3. The Single-Object Poem: Ichibutsu-jitate:</strong> So far, we have focused on toriawase: slamming two different images together across a cut to spark a third meaning. But what happens when you are gripped by a single, solitary subject? Classical masters developed ichibutsu-jitate, or the one-thing composition. In an ichibutsu-jitate poem, there is no second image. The entire three lines dwell on a single object or creature. How does this produce a poem instead of a boring label? Through internal transformation. You observe the subject across three micro-moments: its posture, its slight physical shift, and its settling stillness. A single fallen leaf, turning slowly in an eddy of river water, until it snags on a submerged pebble. One subject, fully inhabited.</p>
+        <p style="margin-top: 10px;"><strong>4. Checkpoint 1: The Shasei Filter:</strong> Playback paused for Checkpoint One. Please inspect the four verses on screen and identify the true shasei sketch.</p>
+        <p style="margin-top: 10px;"><strong>5. Adjective Poison and the Concrete Verb:</strong> Let us talk about the enemy of haiku: adjectives. When an amateur writer wants you to feel sad, they write: a sad old tree in the lonely cold forest. Notice what happened: sad and lonely are emotional instructions. They tell the reader what to feel instead of showing what happened. In haiku, every adjective is suspect. If you remove the words sad and lonely, what remains? Black oak branches clicking against the telegraph wire. The word black is sensory. The verb clicking is acoustic. The wire is concrete. By removing emotional editorializing, you allow the reader to experience the loneliness for themselves. In haiku, nouns and verbs do the work; adjectives only get in the way.</p>
+        <p style="margin-top: 10px;"><strong>6. Masterworks: Shiki and Buson:</strong> Listen to Masaoka Shiki’s most celebrated masterpiece, written in eighteen ninety-five: I bite into a persimmon, and a bell tolls, Hōryū-ji temple. Notice the utter simplicity. He does not tell you he is contemplating ancient Buddhist history or feeling peaceful. He tastes the cold, sweet, orange flesh of an autumn persimmon. At that exact moment, across the misty valley, the deep bronze bell of the ancient temple tolls. The physical taste of autumn meets the ancient spiritual sound. Now listen to Buson: A single petal of the cherry blossom fell; then another; then a petal. This is pure ichibutsu-jitate. No grand philosophy. Just the quiet, relentless mathematics of departure.</p>
+        <p style="margin-top: 10px;"><strong>7. Checkpoint 2: Ichibutsu-jitate Diagnosis:</strong> Playback paused for Checkpoint Two. Please diagnose which poem operates as an ichibutsu-jitate composition.</p>
+        <p style="margin-top: 10px;"><strong>8. Summary and the Ginko Walk:</strong> To summarize: shasei is sketching empirical reality without poetic decoration. Wabi-sabi teaches us to find beauty in the worn, the humble, and the decaying. And ichibutsu-jitate shows that a single object, observed with fierce stillness, holds an entire universe. Your assignment today is a ginko: a classical haiku walking meditation. Step outside for ten minutes. Do not look for dramatic sunsets. Look for something weathered: a warped fence board, an oil stain on asphalt, a dried seedpod. Write three lines about it. Ban every adjective. Let the thing itself speak.</p>
+      </div>
+    </details>
+
+    <!-- Book Chapter Pagination -->
+    <div class="chapter-navigation">
+      <a href="0002-kigo-and-senryu.html" class="chapter-nav-btn">&larr; Chapter II: The Seasonal Soul</a>
+      <a href="../index.html" class="chapter-nav-btn primary">Folio Table of Contents &rarr;</a>
+    </div>
+  </div>
+
+  <!-- Lesson Data Contract for player.js -->
+  <script id="lesson-data" type="application/json">
+  {
+    "id": "0003",
+    "title": "The Art of Seeing: Shasei, Wabi-Sabi & The Single-Object Haiku",
+    "missionOutcome": "Capture empirical reality through objective sensory sketching (shasei), compose a resonant single-object poem (ichibutsu-jitate) without overt two-part juxtaposition, and evoke the weathered transience of wabi-sabi and mono no aware by banishing sentimental adjectives.",
+    "segments": [
+      {
+        "id": "seg-motivation",
+        "type": "motivation",
+        "title": "The Lens of Shasei",
+        "visualCardId": "card-motivation",
+        "durationSeconds": 46.27
+      },
+      {
+        "id": "seg-principle",
+        "type": "concept",
+        "title": "Wabi-Sabi and the Imperfect World",
+        "visualCardId": "card-principle",
+        "durationSeconds": 46.20
+      },
+      {
+        "id": "seg-ichibutsu",
+        "type": "concept",
+        "title": "The Single-Object Poem: Ichibutsu-jitate",
+        "visualCardId": "card-ichibutsu",
+        "durationSeconds": 44.71
+      },
+      {
+        "id": "chk-1",
+        "type": "checkpoint",
+        "title": "Checkpoint 1: The Shasei Filter",
+        "visualCardId": "card-chk-1",
+        "durationSeconds": 7.21
+      },
+      {
+        "id": "seg-contrast",
+        "type": "concept",
+        "title": "Adjective Poison and the Concrete Verb",
+        "visualCardId": "card-contrast",
+        "durationSeconds": 42.94
+      },
+      {
+        "id": "seg-examples",
+        "type": "example",
+        "title": "Masterworks: Shiki and Buson",
+        "visualCardId": "card-examples",
+        "durationSeconds": 43.77
+      },
+      {
+        "id": "chk-2",
+        "type": "checkpoint",
+        "title": "Checkpoint 2: Ichibutsu-jitate Diagnosis",
+        "visualCardId": "card-chk-2",
+        "durationSeconds": 6.83
+      },
+      {
+        "id": "seg-summary",
+        "type": "summary",
+        "title": "Summary and the Ginko Walk",
+        "visualCardId": "card-summary",
+        "durationSeconds": 37.03
+      }
+    ],
+    "checkpoints": [
+      {
+        "id": "chk-1",
+        "segmentId": "chk-1",
+        "question": "Which of the following versions of a poem best embodies Masaoka Shiki’s principle of shasei (sketching directly from empirical reality)?",
+        "correctIndex": 1,
+        "explanation": "Pure shasei acts as a camera lens: it records physical sensory facts (black oak branch, clicking cold rain, rusted tractor seat) without editorializing adjectives ('heartbroken', 'tragic', 'lonely', 'majesty'). The feeling arises naturally from the object itself."
+      },
+      {
+        "id": "chk-2",
+        "segmentId": "chk-2",
+        "question": "Which of the following compositions operates as an ichibutsu-jitate (single-object focus) rather than a two-image juxtaposition (toriawase)?",
+        "correctIndex": 2,
+        "explanation": "Buson's verse focuses entirely on a single subject (the falling cherry petals) across time and motion without colliding it with a second, separate image across a cut."
+      }
+    ]
+  }
+  </script>
+
+  <!-- Player Script -->
+  <script src="../assets/player.js"></script>
+  <script src="../assets/pronounce.js"></script>
+</body>
+</html>

@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 0002: The Seasonal Soul &amp; The Human Mirror &bull; Haiku Studio</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+  <style>
+    .distance-spectrum {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 20px 0;
+    }
+    .spectrum-bar {
+      display: flex;
+      border: 1px solid var(--border-light);
+      border-radius: 6px;
+      overflow: hidden;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      text-align: center;
+      line-height: 2;
+    }
+    .spectrum-zone {
+      padding: 10px;
+    }
+    .zone-close { flex: 1; background: #fef2f2; color: #991b1b; }
+    .zone-sweet { flex: 2; background: #f0fdf4; color: #166534; font-weight: bold; border-left: 2px solid #86efac; border-right: 2px solid #86efac; }
+    .zone-far { flex: 1; background: #fef2f2; color: #991b1b; }
+
+    .season-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-family: var(--font-sans);
+      font-size: 15px;
+    }
+    .season-table th, .season-table td {
+      border: 1px solid var(--border-light);
+      padding: 10px 14px;
+      text-align: left;
+    }
+    .season-table th {
+      background: #f7f4ed;
+      color: var(--text-main);
+    }
+  </style>
+</head>
+<body>
+  <div class="lesson-container">
+    <!-- Running Header (Book Folio Bar) -->
+    <nav class="lesson-nav" aria-label="Book Navigation">
+      <a href="../index.html" class="dashboard-link">&lang; Course Dashboard</a>
+      <span class="lesson-index-badge">Chapter II of V &bull; 4:10</span>
+    </nav>
+
+    <!-- Chapter Header -->
+    <header class="lesson-header">
+      <div class="lesson-badge">Chapter II &bull; Audio-Led Recitation</div>
+      <h1 class="lesson-title">The Seasonal Soul &amp; The Human Mirror</h1>
+      <p style="color: var(--text-muted); font-size: 16px; font-style: italic; margin-bottom: 12px;">
+        On the compression power of Kigo, the calibration of image distance, and the demarcation of Senryu.
+      </p>
+      <div class="mission-outcome-box">
+        <strong>Observable Milestone:</strong> (from <a href="../mission.html" style="color: #1e3a8a; text-decoration: underline;">MISSION.md</a>) Accurately calibrate relational distance across the cut (<a href="../glossary.html#toriawase" style="color: #1e3a8a; text-decoration: underline;"><em>toriawase</em></a>) using seasonal anchors (<a href="../glossary.html#kigo" style="color: #1e3a8a; text-decoration: underline;"><em>kigo</em></a>) from the <a href="../glossary.html#saijiki" style="color: #1e3a8a; text-decoration: underline;"><em>saijiki</em></a>, while distinguishing true haiku from satirical <a href="../glossary.html#senryu" style="color: #1e3a8a; text-decoration: underline;"><em>senryu</em></a>.
+      </div>
+    </header>
+
+    <!-- Audio Player Widget -->
+    <section class="player-widget" aria-label="Audio Chapter Recitation">
+      <audio id="lesson-audio" src="../assets/audio/0002-kigo-and-senryu.m4a" preload="auto"></audio>
+
+      <div class="player-top-row">
+        <div class="player-main-controls">
+          <button id="player-play-btn" class="play-btn" aria-label="Play recitation">
+            <span id="player-play-icon" style="font-size: 20px;">▶</span>
+          </button>
+          <div id="player-time" class="player-time-display">0:00 / 4:10</div>
+        </div>
+
+        <div class="speed-selector" aria-label="Playback speed">
+          <button class="speed-btn active" data-speed="1.0">1.0&times;</button>
+          <button class="speed-btn" data-speed="1.25">1.25&times;</button>
+          <button class="speed-btn" data-speed="1.5">1.5&times;</button>
+        </div>
+      </div>
+
+      <div class="scrub-container">
+        <input type="range" id="player-scrubber" class="scrub-slider" min="0" max="100" value="0" aria-label="Audio scrubber">
+      </div>
+
+      <!-- Segment Timeline Pills -->
+      <nav class="timeline-pills" aria-label="Chapter sections">
+        <button class="segment-pill active" data-segment-id="seg-motivation">1. Code of Kigo</button>
+        <button class="segment-pill" data-segment-id="seg-principle">2. Five Seasons</button>
+        <button class="segment-pill" data-segment-id="seg-distance">3. Image Distance</button>
+        <button class="segment-pill checkpoint" data-segment-id="chk-1">&quest; Checkpoint 1</button>
+        <button class="segment-pill" data-segment-id="seg-contrast">4. The Senryu Line</button>
+        <button class="segment-pill" data-segment-id="seg-examples">5. Masterworks</button>
+        <button class="segment-pill checkpoint" data-segment-id="chk-2">&quest; Checkpoint 2</button>
+        <button class="segment-pill" data-segment-id="seg-summary">6. Dual Challenge</button>
+      </nav>
+    </section>
+
+    <!-- Checkpoint Notification Banner -->
+    <div id="checkpoint-banner" class="checkpoint-pause-banner" role="alert">
+      <span>&#9208; Narration Paused: Please complete the retrieval checkpoint below to verify understanding before audio continues.</span>
+    </div>
+
+    <!-- Synchronized Visual Content Cards -->
+    <main class="visual-cards-section">
+      <!-- Card 1: Motivation -->
+      <article id="card-motivation" class="visual-card active">
+        <h3>1. The Secret Code of <em>Kigo</em></h3>
+        <p>A seasonal word (<a href="../glossary.html#kigo" style="color: var(--accent-blue);"><em>kigo</em></a>) is not an incidental weather tag. It is an ancient <strong>cultural compression algorithm</strong>.</p>
+        <div style="background: #fdfcf7; border: 1px solid var(--border-light); border-left: 4px solid var(--accent-gold); padding: 16px; border-radius: 4px; margin: 16px 0;">
+          <p style="font-size: 16px; line-height: 1.6; margin: 0;">
+            When you name a single marker&mdash;<em>cherry petals</em>, <em>cicada husk</em>, or <em>first frost</em>&mdash;you instantly summon centuries of shared ecological memory into two words. The season performs the emotional labor so your poem remains free of sentimental editorializing.
+          </p>
+        </div>
+        <p class="caption">Audio focus: How seasonal shorthand removes the need for adjectives.</p>
+      </article>
+
+      <!-- Card 2: Principle -->
+      <article id="card-principle" class="visual-card">
+        <h3>2. The Five Seasons &amp; Psychological Frequencies</h3>
+        <p>In the traditional <a href="../glossary.html#saijiki" style="color: var(--accent-blue);"><em>saijiki</em></a> (seasonal almanac), poets recognize five distinct temporal realms, each carrying an objective emotional resonance:</p>
+
+        <table class="season-table">
+          <thead>
+            <tr>
+              <th>Season</th>
+              <th>Ecological Phenomenon</th>
+              <th>Psychological Frequency</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Spring</strong></td>
+              <td>Mud thaw, swelling buds, morning mist, frogs</td>
+              <td>Vulnerability, fragile renewal, incipient hope</td>
+            </tr>
+            <tr>
+              <td><strong>Summer</strong></td>
+              <td>Thunderheads, heat shimmer, relentless cicadas</td>
+              <td>Intense vitality, exhaustion, baking thirst</td>
+            </tr>
+            <tr>
+              <td><strong>Autumn</strong></td>
+              <td>Harvest moon, scarecrow, woodsmoke, falling fruit</td>
+              <td><em><a href="../glossary.html#mono-no-aware" style="color: var(--accent-blue);">Mono no aware</a></em>, poignant transience, dusk</td>
+            </tr>
+            <tr>
+              <td><strong>Winter</strong></td>
+              <td>Bare oaks, dry snow, clicking ice twigs, frost</td>
+              <td><em><a href="../glossary.html#wabi-sabi" style="color: var(--accent-blue);">Wabi-sabi</a></em>, stark solitude, quiet endurance</td>
+            </tr>
+            <tr>
+              <td><strong>New Year</strong></td>
+              <td>First sunrise, first calligraphy, pristine snow</td>
+              <td>Clean slate, cosmic reset, reverent beginning</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="caption">Audio focus: Notice how a cup of tea on a porch shifts its entire emotional meaning based on the season.</p>
+      </article>
+
+      <!-- Card 3: Image Distance -->
+      <article id="card-distance" class="visual-card">
+        <h3>3. Calibrating Image Distance</h3>
+        <p>In Lesson I we introduced <a href="../glossary.html#toriawase" style="color: var(--accent-blue);"><em>toriawase</em></a> (juxtaposition across the cut). The secret to masterwork haiku lies in tuning the <strong>perceptual distance</strong> between the two images:</p>
+
+        <div class="distance-spectrum">
+          <div class="spectrum-bar">
+            <div class="spectrum-zone zone-close">TOO CLOSE (Boring)</div>
+            <div class="spectrum-zone zone-sweet">THE GOLDEN RESONANCE</div>
+            <div class="spectrum-zone zone-far">TOO FAR (Absurd)</div>
+          </div>
+        </div>
+
+        <ul style="margin: 12px 0 0 20px; font-size: 15px; line-height: 1.7;">
+          <li><strong>Too Close:</strong> <em>Pine branch &mdash; / a green pine needle / falls on the root.</em> &rarr; Trivial, redundant; no spark leaps across the cut.</li>
+          <li><strong>The Golden Distance:</strong> <em>Old bronze temple bell &mdash; / resting asleep, / a butterfly.</em> &rarr; Two disparate categories (heavy metal vs. silent gossamer wing) sharing a hidden emotional friction.</li>
+          <li><strong>Too Far:</strong> <em>Stapler on a desk &mdash; / an exploding supernova / across the cosmos.</em> &rarr; Incoherent, surrealist; the human intuition cannot bridge the gap.</li>
+        </ul>
+      </article>
+
+      <!-- Card 4: Checkpoint 1 -->
+      <article id="card-chk-1" class="visual-card checkpoint-card">
+        <h4>Checkpoint 1: Calibrating Image Distance</h4>
+        <p style="margin-bottom: 14px; font-size: 16px;">
+          Why does a haiku that pairs an oak tree with a falling oak leaf often feel dull or unmemorable to experienced readers?
+        </p>
+        <div class="options-list">
+          <button class="option-btn" data-index="0">
+            The two images are too close in perceptual distance, leaving no gap (<a href="../glossary.html#yohaku" style="color: inherit;"><em>yohaku</em></a>) for a cognitive spark of realization.
+          </button>
+          <button class="option-btn" data-index="1">
+            Classical Japanese poetics strictly prohibited writing about trees and leaves in the same poem.
+          </button>
+          <button class="option-btn" data-index="2">
+            Because oak trees are only recognized in Western literature and do not exist in the Japanese <em>saijiki</em>.
+          </button>
+          <button class="option-btn" data-index="3">
+            The phrase inherently exceeds the seventeen-syllable maximum count required for nature verse.
+          </button>
+        </div>
+        <div class="checkpoint-feedback"></div>
+      </article>
+
+      <!-- Card 5: The Senryu Line -->
+      <article id="card-contrast" class="visual-card">
+        <h3>4. The Demarcation: Haiku vs. Senryu</h3>
+        <p>Both forms share the exact same 3-line structural frame, but their spiritual centers are opposites:</p>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0;">
+          <div style="background: #f0fdf4; border: 1px solid #86efac; border-radius: 6px; padding: 16px;">
+            <strong style="color: #166534; font-size: 17px;">The Haiku Realm</strong>
+            <ul style="margin: 8px 0 0 16px; font-size: 14px; line-height: 1.6;">
+              <li><strong>Center:</strong> Nature, cosmos, transience.</li>
+              <li><strong>Ego:</strong> Dissolved; objective presence (<a href="../glossary.html#shasei" style="color: var(--accent-blue);"><em>shasei</em></a>).</li>
+              <li><strong>Requirement:</strong> Mandatory seasonal anchor (<a href="../glossary.html#kigo" style="color: var(--accent-blue);"><em>kigo</em></a>).</li>
+              <li><strong>Tone:</strong> Reverent, quiet, contemplative, awe.</li>
+            </ul>
+          </div>
+
+          <div style="background: #fff1f2; border: 1px solid #fecdd3; border-radius: 6px; padding: 16px;">
+            <strong style="color: #9f1239; font-size: 17px;"><a href="../glossary.html#senryu" style="color: #9f1239; text-decoration: underline;">The Senryu Realm</a></strong>
+            <ul style="margin: 8px 0 0 16px; font-size: 14px; line-height: 1.6;">
+              <li><strong>Center:</strong> Human folly, relationships, society.</li>
+              <li><strong>Ego:</strong> Centered; domestic life and irony.</li>
+              <li><strong>Requirement:</strong> No seasonal word required.</li>
+              <li><strong>Tone:</strong> Witty, satirical, cynical, humorous.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 6: Masterwork Examples -->
+      <article id="card-examples" class="visual-card">
+        <h3>5. Masterwork Comparisons</h3>
+        <p>Notice how masters handle the animal world versus human domesticity:</p>
+
+        <div class="poem-card">
+          <span class="technique-tag">Haiku &bull; Kobayashi Issa (1819)</span>
+          <div class="poem-lines">
+            Do not swat the fly &mdash;<br>
+            it wrings its hands,<br>
+            it wrings its feet.
+          </div>
+          <div class="poem-meta">
+            <em>Spirit:</em> Pure Buddhist tenderness and seasonal summer presence. The human ego steps back to witness small life.
+          </div>
+        </div>
+
+        <div class="poem-card" style="border-left-color: #e11d48;">
+          <span class="technique-tag" style="background: #ffe4e6; color: #be123c;">Senryu &bull; Alexis Rotella</span>
+          <div class="poem-lines">
+            After the divorce<br>
+            the portrait of our wedding<br>
+            in the thrift shop window
+          </div>
+          <div class="poem-meta">
+            <em>Spirit:</em> Piercing human irony. No seasonal kigo; raw domestic observation that makes the reader wince and smile.
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 7: Checkpoint 2 -->
+      <article id="card-chk-2" class="visual-card checkpoint-card">
+        <h4>Checkpoint 2: Haiku vs. Senryu Diagnosis</h4>
+        <p style="margin-bottom: 14px; font-size: 16px;">
+          Which of the following poems is classified as a <strong>senryu</strong> rather than a true haiku?
+        </p>
+        <div class="options-list">
+          <button class="option-btn" data-index="0">
+            morning frost &mdash; / a crow snaps a pine twig, / the sharp echo
+          </button>
+          <button class="option-btn" data-index="1">
+            deep autumn &mdash; / the neighbor's persimmon / heavy with rain
+          </button>
+          <button class="option-btn" data-index="2">
+            zoom call frozen &mdash; / my boss mid-sentence / with his mouth wide open
+          </button>
+          <button class="option-btn" data-index="3">
+            spring thaw &mdash; / black mud remembering / the shape of boots
+          </button>
+        </div>
+        <div class="checkpoint-feedback"></div>
+      </article>
+
+      <!-- Card 8: Summary -->
+      <article id="card-summary" class="visual-card">
+        <h3>6. Synthesis &amp; Today's Dual Challenge</h3>
+        <p>You now possess the discerning eye to calibrate image distance and navigate between the sacred contemplation of haiku and the profane wit of senryu.</p>
+
+        <div style="background: #fdfbf7; border: 1px solid var(--border-light); padding: 20px; border-radius: 6px; margin: 18px 0;">
+          <h4 style="margin-bottom: 8px;">Your Dual Composition Challenge:</h4>
+          <ol style="margin-left: 20px; font-size: 16px; line-height: 1.7;">
+            <li><strong>The Haiku:</strong> Pick one anchor from the <a href="../reference/poetic-imagery-cheatsheet.html" style="color: var(--accent-blue); font-weight: bold;">Poetic Imagery Cheatsheet</a>. Pair it across a cut with a distant, resonant natural action.</li>
+            <li><strong>The Senryu:</strong> Look at your workday, phone notifications, or domestic quirks. Draft a 3-line verse capturing human folly with zero seasonal words.</li>
+          </ol>
+        </div>
+
+        <div style="margin-top: 18px; padding: 14px; background: #fafaf9; border: 1px solid var(--border-light); border-radius: 6px; font-family: var(--font-sans); font-size: 14px;">
+          <strong>Workspace Documents:</strong>
+          <div style="margin-top: 6px; display: flex; gap: 14px; flex-wrap: wrap;">
+            <a href="../index.html" style="color: var(--accent-blue); font-weight: bold;">Studio Dashboard</a> &bull;
+            <a href="../mission.html" style="color: var(--accent-blue); font-weight: bold;">Mission</a> &bull;
+            <a href="../glossary.html" style="color: var(--accent-blue); font-weight: bold;">Glossary</a> &bull;
+            <a href="../reference/poetic-imagery-cheatsheet.html" style="color: var(--accent-blue); font-weight: bold;">Poetic Imagery</a>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <!-- Demonstrated Learning Evidence Block -->
+    <section class="evidence-section">
+      <h3>Demonstrated Learning Evidence</h3>
+      <p style="font-size: 14px; color: var(--text-muted);">
+        When you complete the checkpoints above, this block records your verified mastery for the workspace learning records.
+      </p>
+      <div id="evidence-text" class="evidence-box">Loading evidence record...</div>
+      <button id="copy-evidence-btn" class="copy-evidence-btn">Copy Evidence to Clipboard</button>
+    </section>
+
+    <!-- Complete Spoken Transcript Expander -->
+    <details class="transcript-details">
+      <summary>View Complete Spoken Narration Transcript</summary>
+      <div style="margin-top: 14px; font-size: 15px; line-height: 1.7; color: var(--text-muted);">
+        <p><strong>1. The Secret Code of Kigo:</strong> Welcome to Lesson Two. In our first lesson, you learned that haiku is an electric circuit of two images separated by a cut. But where does the emotional charge come from? In classical haiku, that charge comes from kigo, the seasonal anchor. A kigo is not just a weather report. It is a cultural compression algorithm. When you say cherry blossom, fallen persimmon, or cicada husk, you instantly summon centuries of shared ecological memory. Today, you will learn how to wield kigo to create deep emotional weather, how to tune the distance between your two images, and how to tell a true haiku apart from its humorous sibling, the senryu.</p>
+        <p style="margin-top: 10px;"><strong>2. The Five Seasons &amp; Emotional Resonance:</strong> Traditional Japanese almanacs, or saijiki, recognize five seasons: spring, summer, autumn, winter, and the New Year. Each season carries a distinct psychological frequency. Spring carries the vulnerability of awakening and melting mud. Summer brings intense vitality, baking heat, and insect drone. Autumn carries mono no aware, the poignant beauty of departure, harvesting, and chill. Winter brings stark austerity, bare wood, and quiet endurance. When you choose a kigo, you do not need to tell the reader how to feel. The season does the heavy emotional lifting for you. A teacup sitting on a porch in spring feels hopeful. The exact same teacup sitting on a porch in freezing rain feels like profound solitude.</p>
+        <p style="margin-top: 10px;"><strong>3. Tuning Image Distance:</strong> Now let us refine your juxtaposition. Think of the distance between your two images like tuning a radio. If your two images are too close, say a pine tree and a pine cone, there is no tension. The poem is flat and boring. But if your two images are too far apart, like an office stapler and an exploding galaxy, the mind cannot bridge the gap. It becomes absurd surrealism. The golden middle is what Basho called toriawase at the right frequency: two images from entirely different sensory categories that share a hidden emotional texture. An ancient bronze bell and a paper-thin butterfly wing. A rusty engine cooling down and the onset of November dark. Different categories, but sharing one breath.</p>
+        <p style="margin-top: 10px;"><strong>4. The Line Between Haiku and Senryu:</strong> Here is one of the most critical distinctions in poetry: haiku versus senryu. Both share the exact same three-line structure. But their spirits are completely opposite. In a haiku, the human ego dissolves. You are an objective camera observing nature and time. The tone is reverent, contemplative, or bittersweet, and a seasonal kigo is essential. In a senryu, however, human folly takes center stage. Senryu is about bad dates, frustrating bosses, marital squabbles, and humorous irony. If you write three lines about your burnt toast or traffic jam, you have written a wonderful senryu, but not a haiku. Knowing which one you are writing keeps your craft sharp.</p>
+        <p style="margin-top: 10px;"><strong>5. Masterworks: Issa vs. Modern Senryu:</strong> Consider Kobayashi Issa in eighteen nineteen: Do not swat the fly. It wrings its hands; it wrings its feet. Issa takes a humble summer pest and observes it with deep Buddhist tenderness. The human is not crushing nature; the human is acknowledging kinship. Now compare that to a classic senryu by Alexis Rotella: After the divorce / the portrait of our wedding / in the thrift shop window. Notice: no nature, no seasonal kigo. Just raw, tragicomic human relationship. Both poems are brilliant, but they achieve their brilliance through entirely different doors.</p>
+        <p style="margin-top: 10px;"><strong>6. Summary &amp; Today's Dual Challenge:</strong> To summarize: a kigo is emotional shorthand grounded in nature. Great juxtaposition balances images that are neither too close nor too far. And while haiku looks outward at the cosmos, senryu looks inward at our absurd human antics. Your challenge today is a dual workout: write one true haiku using a sensory anchor from our new cheatsheet, and write one witty senryu observing a human quirk. Test yourself in the dashboard sandbox, and I will see you in our next session.</p>
+      </div>
+    </details>
+
+    <!-- Book Chapter Pagination -->
+    <div class="chapter-navigation">
+      <a href="0001-mastering-haiku.html" class="chapter-nav-btn">&larr; Chapter I: Mastering Haiku</a>
+      <a href="0003-shasei-and-wabi-sabi.html" class="chapter-nav-btn primary">Chapter III: The Art of Seeing &rarr;</a>
+    </div>
+  </div>
+
+  <!-- Lesson Data Contract for player.js -->
+  <script id="lesson-data" type="application/json">
+  {
+    "id": "0002",
+    "title": "The Seasonal Soul & The Human Mirror: Kigo, Image Distance & Senryu",
+    "missionOutcome": "Calibrate relational distance in juxtaposition (toriawase) using seasonal kigo from the saijiki, and distinguish true haiku from satirical senryu.",
+    "segments": [
+      {
+        "id": "seg-motivation",
+        "type": "motivation",
+        "title": "The Secret Code of Kigo",
+        "visualCardId": "card-motivation",
+        "durationSeconds": 39.82
+      },
+      {
+        "id": "seg-principle",
+        "type": "concept",
+        "title": "The Five Seasons & Emotional Resonance",
+        "visualCardId": "card-principle",
+        "durationSeconds": 44.69
+      },
+      {
+        "id": "seg-distance",
+        "type": "concept",
+        "title": "Tuning Image Distance",
+        "visualCardId": "card-distance",
+        "durationSeconds": 44.11
+      },
+      {
+        "id": "chk-1",
+        "type": "checkpoint",
+        "title": "Checkpoint 1: Tuning Image Distance",
+        "visualCardId": "card-chk-1",
+        "durationSeconds": 7.10
+      },
+      {
+        "id": "seg-contrast",
+        "type": "concept",
+        "title": "The Line Between Haiku and Senryu",
+        "visualCardId": "card-contrast",
+        "durationSeconds": 41.51
+      },
+      {
+        "id": "seg-examples",
+        "type": "example",
+        "title": "Masterworks: Issa vs. Modern Senryu",
+        "visualCardId": "card-examples",
+        "durationSeconds": 36.52
+      },
+      {
+        "id": "chk-2",
+        "type": "checkpoint",
+        "title": "Checkpoint 2: Haiku vs. Senryu Diagnosis",
+        "visualCardId": "card-chk-2",
+        "durationSeconds": 6.10
+      },
+      {
+        "id": "seg-summary",
+        "type": "summary",
+        "title": "Summary & Today's Dual Challenge",
+        "visualCardId": "card-summary",
+        "durationSeconds": 30.14
+      }
+    ],
+    "checkpoints": [
+      {
+        "id": "chk-1",
+        "segmentId": "chk-1",
+        "question": "Why does a haiku that pairs an oak tree with a falling oak leaf often feel dull or unmemorable to experienced readers?",
+        "correctIndex": 0,
+        "explanation": "When two images belong to the exact same subject family, they lack perceptual tension across the cut. Toriawase requires two different sensory planes that resonate without overlap."
+      },
+      {
+        "id": "chk-2",
+        "segmentId": "chk-2",
+        "question": "Which of the following poems is classified as a senryu rather than a true haiku?",
+        "correctIndex": 2,
+        "explanation": "The frozen Zoom call centers entirely on modern human workplace absurdity and situational irony without a seasonal or ecological anchor (kigo)—the hallmark of senryu."
+      }
+    ]
+  }
+  </script>
+
+  <!-- Player Script -->
+  <script src="../assets/player.js"></script>
+  <script src="../assets/pronounce.js"></script>
+</body>
+</html>

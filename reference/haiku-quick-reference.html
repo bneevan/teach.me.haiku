@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Haiku Quick Reference & Composition Matrix</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+  <style>
+    @media print {
+      body { background: white; padding: 0; font-size: 14px; }
+      .lesson-container { box-shadow: none; border: none; padding: 0; max-width: 100%; }
+      .no-print { display: none; }
+    }
+    .ref-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 24px 0;
+    }
+    @media (max-width: 700px) {
+      .ref-grid { grid-template-columns: 1fr; }
+    }
+    .ref-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 18px;
+    }
+    .ref-box h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: var(--accent-blue);
+      border-bottom: 2px solid var(--border-light);
+      padding-bottom: 6px;
+    }
+    .poem-sample {
+      font-style: italic;
+      background: #fdfbf7;
+      border-left: 3px solid var(--accent-gold);
+      padding: 10px 14px;
+      margin: 10px 0;
+      line-height: 1.5;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: bold;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: #e2e8f0;
+      color: #334155;
+      margin-right: 4px;
+    }
+    .print-btn {
+      float: right;
+      padding: 6px 14px;
+      font-size: 14px;
+      cursor: pointer;
+      background: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="lesson-container">
+    <!-- Running Header (Book Folio Bar) -->
+    <nav class="lesson-nav no-print" aria-label="Book Navigation">
+      <a href="../index.html" class="dashboard-link">&lang; Course Dashboard</a>
+      <span class="lesson-index-badge">Appendix B &bull; Composition Matrix</span>
+    </nav>
+
+    <button class="print-btn no-print" onclick="window.print()">Print / Save PDF</button>
+    <div class="lesson-header">
+      <div class="lesson-badge">Quick Reference Sheet</div>
+      <h1 class="lesson-title">Haiku Composition &amp; Craft Matrix</h1>
+      <p style="color: var(--text-muted); font-size: 16px;">Core mechanics, famous benchmarks, word pairings, and formulas for rapid &amp; deep verse.</p>
+    </div>
+
+    <!-- Section 1: The Core Architecture -->
+    <div class="ref-grid">
+      <div class="ref-box">
+        <h3>1. The Core Architecture</h3>
+        <ul>
+          <li><strong>The 3-Line English Form:</strong> Short &mdash; Long &mdash; Short (typically 10 to 14 syllables).</li>
+          <li><strong>The Golden Rule:</strong> 17 Japanese <a href="../glossary.html#on" style="color: var(--accent-blue);"><em>on</em> (morae)</a> are phonetic time units. 17 English syllables pack twice as much information. <em>Never pad with fluff to reach 17!</em></li>
+          <li><strong>Two Parts, One Breath:</strong> A Fragment (1 line) and a Phrase (2 lines), separated by a cut.</li>
+          <li><strong>The Cut (<a href="../glossary.html#kireji" style="color: var(--accent-blue);"><em>Kireji</em></a>):</strong> Marked in English by a dash (—), colon (:), or strong syntactic break.</li>
+        </ul>
+      </div>
+
+      <div class="ref-box">
+        <h3>2. Classical Masterpieces Decoded</h3>
+        <div class="poem-sample">
+          <strong>Matsuo Bashō (1686):</strong><br>
+          furu ike ya (old pond —)<br>
+          kawazu tobikomu (a frog jumps into)<br>
+          mizu no oto (water’s sound)<br>
+          <small>&rarr; <em>Juxtaposition:</em> Timeless stillness vs. momentary kinetic splash.</small>
+        </div>
+        <div class="poem-sample">
+          <strong>Yosa Buson:</strong><br>
+          On the temple bell<br>
+          resting, asleep:<br>
+          a butterfly.<br>
+          <small>&rarr; <em>Scale &amp; Texture:</em> Heavy bronze vs. weightless fragile wing.</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 2: Word Categories & Relational Tension -->
+    <div class="ref-grid">
+      <div class="ref-box">
+        <h3>3. Word Categories (<a href="../glossary.html#kigo" style="color: var(--accent-blue);">Kigo</a> &amp; Senses)</h3>
+        <p><strong>Seasonal Anchors (<a href="../glossary.html#kigo" style="color: var(--accent-blue);">Kigo</a>):</strong></p>
+        <ul style="margin-bottom: 8px;">
+          <li><span class="badge">Spring</span> cherry blossoms, melting mud, frogs, thaw, seeds</li>
+          <li><span class="badge">Summer</span> thunderhead, cicadas, heat shimmer, fireflies</li>
+          <li><span class="badge">Autumn</span> harvest moon, scarecrow, cricket, fallen leaves</li>
+          <li><span class="badge">Winter</span> bare oak, frosty breath, freezing rain, blizzard</li>
+        </ul>
+        <p><strong>Sensory Registers:</strong> Prefer touch, sound, and smell over just sight. "Cold iron", "distant bell", "smell of wet stone".</p>
+      </div>
+
+      <div class="ref-box">
+        <h3>4. Relational Strategies (<a href="../glossary.html#toriawase" style="color: var(--accent-blue);">Toriawase</a>)</h3>
+        <p>Deep haiku spark a third meaning across the gap between two contrasting images:</p>
+        <ul>
+          <li><strong>Scale:</strong> Cosmic / Vast vs. Microscopic (e.g. Galaxy vs. Dewdrop).</li>
+          <li><strong>Permanence:</strong> Mountain stone vs. Mayfly lifespan.</li>
+          <li><strong>Motion:</strong> Rigid stillness vs. sudden flight.</li>
+          <li><strong>Sensory Cross:</strong> Deep silence vs. sudden acoustic chime.</li>
+          <li><strong>Rule of Distance:</strong> If images are too close, it’s boring. If too far, it’s nonsense. Target the resonant spark.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Section 3: Fast vs Deep Formulas -->
+    <div class="ref-grid">
+      <div class="ref-box" style="border-left: 4px solid var(--accent-green);">
+        <h3>5. The 60-Second "Snapshot" Formula</h3>
+        <p style="font-size: 15px; margin-bottom: 8px;"><em>Best for: Spontaneous capture, daily journaling, walking walks (ginko).</em></p>
+        <ol style="margin-left: 20px; line-height: 1.6;">
+          <li><strong>Line 1 (Anchor):</strong> Where or when (e.g., <em>morning frost</em>)</li>
+          <li><strong>Line 2 (Action/Subject):</strong> What is moving or present (e.g., <em>a crow snaps a pine twig</em>)</li>
+          <li><strong>Line 3 (Sensory Touch):</strong> The physical impression (e.g., <em>the sharp echo</em>)</li>
+        </ol>
+        <div class="poem-sample">
+          morning frost &mdash;<br>
+          a crow snaps a pine twig,<br>
+          the sharp echo.
+        </div>
+      </div>
+
+      <div class="ref-box" style="border-left: 4px solid var(--accent-blue);">
+        <h3>6. The Deep Contemplative Formula</h3>
+        <p style="font-size: 15px; margin-bottom: 8px;"><em>Best for: Emotional resonance, wabi-sabi, mono no aware.</em></p>
+        <ol style="margin-left: 20px; line-height: 1.6;">
+          <li><strong>Step 1:</strong> Select a poignant human state or memory (e.g., grief, aging, solitude). <em>Do not name it.</em></li>
+          <li><strong>Step 2:</strong> Find a concrete natural object that shares that rhythm (e.g., rusty nail, dry creek bed, autumn moth).</li>
+          <li><strong>Step 3:</strong> Place the cut (—) between your human anchor and the natural image.</li>
+        </ol>
+        <div class="poem-sample">
+          hospital parking lot &mdash;<br>
+          the engine ticking down<br>
+          into November cold
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 4: What to Avoid -->
+    <div class="ref-box" style="border-left: 4px solid var(--accent-red);">
+      <h3 style="color: var(--accent-red);">7. The Five Fatal Traps</h3>
+      <ol style="margin-left: 20px; line-height: 1.6;">
+        <li><strong>Padding for 5-7-5:</strong> Adding meaningless filler words ("oh so blue", "upon the tree") just to count syllables.</li>
+        <li><strong>Naming the Emotion:</strong> Writing "I feel sad" or "joyful sunset". Show the wet coat or the spilled tea instead.</li>
+        <li><strong>Rhyming:</strong> Rhyme ties the lines in a sing-song loop, destroying the sharp open cut (<a href="../glossary.html#yohaku" style="color: var(--accent-red);"><em>yohaku</em></a>).</li>
+        <li><strong>Anthropomorphism:</strong> Avoid "the trees are weeping" or "happy clouds". Keep nature objective and dignified.</li>
+        <li><strong>Explaining the Meaning:</strong> Never tell the reader how the two images connect. Let the spark leap across the cut in their mind.</li>
+      </ol>
+    </div>
+
+    <!-- Workspace Links Footer -->
+    <div style="margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-family: var(--font-sans); font-size: 14px;">
+      <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+        <a href="../mission.html" style="color: var(--accent-blue); text-decoration: none;">&larr; Mission</a>
+        <a href="../glossary.html" style="color: var(--accent-blue); text-decoration: none;">Glossary</a>
+        <a href="../resources.html" style="color: var(--accent-blue); text-decoration: none;">Resources</a>
+      </div>
+      <div>
+        <a href="../lessons/0001-mastering-haiku.html" style="color: var(--accent-blue); font-weight: bold; text-decoration: none;">Open Interactive Audio Lesson 0001 &rarr;</a>
+      </div>
+    </div>
+  </div>
+  <script src="../assets/pronounce.js"></script>
+</body>
+</html>

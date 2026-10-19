@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 0001: Mastering Haiku &mdash; Mechanics, Juxtaposition, and Deep Resonance</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+  <style>
+    /* Custom enhancements for lesson 0001 */
+    .circuit-diagram {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      background: #fdfbf7;
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 18px 12px;
+      margin: 20px 0;
+      text-align: center;
+      font-family: var(--font-sans);
+    }
+    .circuit-node {
+      flex: 1;
+      padding: 12px;
+      background: #ffffff;
+      border: 2px solid #3b82f6;
+      border-radius: 6px;
+      box-shadow: var(--shadow-sm);
+    }
+    .circuit-node.cut {
+      flex: 0 0 100px;
+      margin: 0 10px;
+      border-color: #f59e0b;
+      background: #fffbeb;
+      font-weight: bold;
+      color: #b45309;
+    }
+    .circuit-spark {
+      font-size: 20px;
+      color: #eab308;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .analysis-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 18px 0;
+      font-size: 15px;
+      font-family: var(--font-sans);
+    }
+    .analysis-table th, .analysis-table td {
+      border: 1px solid var(--border-light);
+      padding: 10px 14px;
+      text-align: left;
+    }
+    .analysis-table th {
+      background: #f4efe6;
+      color: var(--text-main);
+    }
+    .poem-card {
+      background: #ffffff;
+      border-left: 4px solid var(--accent-gold);
+      padding: 14px 18px;
+      margin: 14px 0;
+      border-radius: 0 6px 6px 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    }
+    .poem-lines {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      line-height: 1.5;
+      color: #111827;
+      margin-bottom: 8px;
+    }
+    .poem-meta {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      color: #6b7280;
+    }
+    .technique-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: bold;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: #e0f2fe;
+      color: #0369a1;
+      margin-right: 6px;
+    }
+    .contrast-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 16px 0;
+    }
+    @media (max-width: 650px) {
+      .circuit-diagram { flex-direction: column; gap: 10px; }
+      .circuit-node.cut { margin: 8px 0; width: 100%; }
+      .contrast-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="lesson-container">
+    <!-- Running Header (Book Folio Bar) -->
+    <nav class="lesson-nav" aria-label="Book Navigation">
+      <a href="../index.html" class="dashboard-link">&lang; Course Dashboard</a>
+      <span class="lesson-index-badge">Chapter I of V &bull; 4:22</span>
+    </nav>
+
+    <!-- Header -->
+    <header class="lesson-header">
+      <div class="lesson-badge">Lesson 0001 &bull; Audio-Led Instruction</div>
+      <h1 class="lesson-title">Mastering Haiku: Mechanics, Juxtaposition &amp; Resonance</h1>
+      <div class="mission-outcome-box">
+        <strong>Observable Learning Outcome:</strong> (from <a href="../mission.html" style="color: #1e3a8a; text-decoration: underline;">MISSION.md</a>) Compose spontaneous 60-second sensory snapshots and deep contemplative haiku using <a href="../glossary.html#toriawase" style="color: #1e3a8a; font-weight: bold; text-decoration: underline;"><em>toriawase</em></a> (juxtaposition), the structural cut (<a href="../glossary.html#kireji" style="color: #1e3a8a; font-weight: bold; text-decoration: underline;"><em>kireji</em></a>), and seasonal resonance (<a href="../glossary.html#kigo" style="color: #1e3a8a; font-weight: bold; text-decoration: underline;"><em>kigo</em></a>), without relying on mechanical 5-7-5 syllable padding.
+      </div>
+    </header>
+
+    <!-- Interactive Audio Player Widget -->
+    <section class="player-widget" aria-label="Audio lesson player">
+      <!-- Hidden audio element pointing to the generated narration asset -->
+      <audio id="lesson-audio" src="../assets/audio/0001-haiku-fundamentals.m4a" preload="auto"></audio>
+
+      <div class="player-top-row">
+        <div class="player-main-controls">
+          <button id="player-play-btn" class="play-btn" aria-label="Play or pause narration">
+            <span id="player-play-icon" style="font-size: 20px;">▶</span>
+          </button>
+          <div id="player-time" class="player-time-display">0:00 / 4:22</div>
+        </div>
+
+        <div class="speed-selector" aria-label="Playback speed">
+          <button class="speed-btn active" data-speed="1.0">1.0&times;</button>
+          <button class="speed-btn" data-speed="1.25">1.25&times;</button>
+          <button class="speed-btn" data-speed="1.5">1.5&times;</button>
+        </div>
+      </div>
+
+      <div class="scrub-container">
+        <input type="range" id="player-scrubber" class="scrub-slider" min="0" max="100" value="0" aria-label="Audio scrubber">
+      </div>
+
+      <!-- Segment Timeline Pills -->
+      <nav class="timeline-pills" aria-label="Lesson segments">
+        <button class="segment-pill active" data-segment-id="seg-motivation">1. The Instant</button>
+        <button class="segment-pill" data-segment-id="seg-principle">2. The Cut</button>
+        <button class="segment-pill" data-segment-id="seg-examples">3. The Masters</button>
+        <button class="segment-pill checkpoint" data-segment-id="chk-1">&quest; Checkpoint 1</button>
+        <button class="segment-pill" data-segment-id="seg-contrast">4. Syllable Myth</button>
+        <button class="segment-pill" data-segment-id="seg-application">5. Fast vs Deep</button>
+        <button class="segment-pill checkpoint" data-segment-id="chk-2">&quest; Checkpoint 2</button>
+        <button class="segment-pill" data-segment-id="seg-summary">6. Summary</button>
+      </nav>
+    </section>
+
+    <!-- Checkpoint Notification Banner -->
+    <div id="checkpoint-banner" class="checkpoint-pause-banner" role="alert">
+      <span>&#9208; Narration Paused: Please complete the retrieval checkpoint below to verify understanding before audio continues.</span>
+    </div>
+
+    <!-- Synchronized Visual Content Cards -->
+    <main class="visual-cards-section">
+      <!-- Card 1: Motivation -->
+      <article id="card-motivation" class="visual-card active">
+        <h3>1. The Essence of the Instant</h3>
+        <p>Haiku is not a quaint syllabic exercise about gardens; it is an ancient perceptual technology designed to halt the racing analytical mind and pin down an authentic, fleeting moment of reality.</p>
+        <div class="contrast-grid">
+          <div style="background: #f8fafc; border: 1px solid #cbd5e1; padding: 14px; border-radius: 6px;">
+            <strong style="color: #475569;">Western Lyric Poetry</strong>
+            <p style="font-size: 15px; margin-top: 6px;">Expresses internal psychology, ego, emotional commentary, and metaphor ("My heart is like a singing bird").</p>
+          </div>
+          <div style="background: #f0fdf4; border: 1px solid #86efac; padding: 14px; border-radius: 6px;">
+            <strong style="color: #166534;">Haiku Poetics (<a href="../glossary.html#shasei" style="color: #166534; text-decoration: underline;">Shasei</a>)</strong>
+            <p style="font-size: 15px; margin-top: 6px;">Evaporates the poet's ego. Presents empirical sensory facts directly so the reader experiences the phenomenon firsthand.</p>
+          </div>
+        </div>
+        <p class="caption">Audio focus: Writing for the ear and listening for the acoustic spark across silence.</p>
+      </article>
+
+      <!-- Card 2: Principle (Juxtaposition & The Cut) -->
+      <article id="card-principle" class="visual-card">
+        <h3>2. The Core Engine: Juxtaposition (<a href="../glossary.html#toriawase" style="color: var(--accent-blue);"><em>Toriawase</em></a>)</h3>
+        <p>A haiku almost never describes a single, isolated scene. It works by setting two perceptual planes against each other across a structural cut (<a href="../glossary.html#kireji" style="color: var(--accent-blue);"><em>kireji</em></a>).</p>
+
+        <div class="circuit-diagram">
+          <div class="circuit-node">
+            <strong>Image A: The Anchor</strong>
+            <div style="font-size: 13px; color: #4b5563; margin-top: 4px;">Enduring, vast, or context (e.g. <em>old temple bell</em>)</div>
+          </div>
+          <div class="circuit-node cut">
+            <span class="circuit-spark">&#9889;</span>
+            <strong>The Cut</strong>
+            <div style="font-size: 12px;">(— / : / pause)</div>
+          </div>
+          <div class="circuit-node">
+            <strong>Image B: The Kinetic</strong>
+            <div style="font-size: 13px; color: #4b5563; margin-top: 4px;">Fleeting, minute, or sensory (e.g. <em>sleeping butterfly</em>)</div>
+          </div>
+        </div>
+
+        <p>Between these two images lies <strong><a href="../glossary.html#yohaku" style="color: var(--text-main); text-decoration: underline;">Yohaku (余白)</a></strong>: the pregnant white space. If you explain why the images are related, you discharge the electricity. If you keep them separate, the reader's intuition creates the connection.</p>
+        <p class="caption">Audio focus: The principle of desirable difficulty in imagery &mdash; neither too close nor too far.</p>
+      </article>
+
+      <!-- Card 3: Examples (Classical & Modern Masters) -->
+      <article id="card-examples" class="visual-card">
+        <h3>3. Masterworks Decoded</h3>
+        <p>Notice how masters balance scale, sound, texture, and time across the cut:</p>
+
+        <div class="poem-card">
+          <span class="technique-tag">Matsuo Bashō &bull; 1686</span>
+          <div class="poem-lines">
+            old pond &mdash;<br>
+            a frog jumps into<br>
+            the sound of water
+          </div>
+          <div class="poem-meta">
+            <em>Dynamics:</em> Ancient stillness (the pond) &harr; sudden acoustic kinetic event (water splash). Eternity pierced by a solitary sound.
+          </div>
+        </div>
+
+        <div class="poem-card">
+          <span class="technique-tag">Yosa Buson &bull; Edo Period</span>
+          <div class="poem-lines">
+            On the temple bell<br>
+            resting, asleep:<br>
+            a butterfly.
+          </div>
+          <div class="poem-meta">
+            <em>Dynamics:</em> Colossal, heavy, resonant bronze bell (capable of deafening sound) &harr; gossamer, silent, vulnerable butterfly wing.
+          </div>
+        </div>
+
+        <div class="poem-card">
+          <span class="technique-tag">Kobayashi Issa &bull; 1819</span>
+          <div class="poem-lines">
+            O snail &mdash;<br>
+            climb Mount Fuji,<br>
+            but slowly, slowly!
+          </div>
+          <div class="poem-meta">
+            <em>Dynamics:</em> Japan's most massive sacred mountain &harr; the tiniest, slowest creature. A tender, existential kinship.
+          </div>
+        </div>
+
+        <div class="poem-card">
+          <span class="technique-tag">Nick Virgilio &bull; Modern Classic</span>
+          <div class="poem-lines">
+            bass<br>
+            picking bugs<br>
+            off the moon
+          </div>
+          <div class="poem-meta">
+            <em>Dynamics:</em> Only seven words. The cosmic moon reflected on the water's surface broken by the mouth of a wild fish.
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 4: Checkpoint 1 -->
+      <article id="card-chk-1" class="visual-card checkpoint-card">
+        <h4>Checkpoint 1: The Principle of Juxtaposition</h4>
+        <p style="margin-bottom: 14px; font-size: 16px;">
+          Why do master haiku poets deliberately avoid explaining how the two images in a poem relate to each other?
+        </p>
+        <div class="options-list">
+          <button class="option-btn" data-index="0">
+            To preserve the <em>yohaku</em> (resonant gap), allowing the reader's intuition to create the emotional spark.
+          </button>
+          <button class="option-btn" data-index="1">
+            To maintain an exact mechanical count of seventeen English syllables across the three lines.
+          </button>
+          <button class="option-btn" data-index="2">
+            Because classical Japanese grammatical law forbade verbs and prepositions in nature poetry.
+          </button>
+          <button class="option-btn" data-index="3">
+            To make sure the poem functions as a satirical, humorous senryu rather than a serious verse.
+          </button>
+        </div>
+        <div class="checkpoint-feedback"></div>
+      </article>
+
+      <!-- Card 5: Contrast (Syllable Myth & Senryu) -->
+      <article id="card-contrast" class="visual-card">
+        <h3>4. The Syllable Myth &amp; The Senryu Trap</h3>
+        <p>The belief that English haiku must follow a rigid 5-7-5 syllable formula is a historical translation misunderstanding.</p>
+
+        <table class="analysis-table">
+          <thead>
+            <tr>
+              <th>Dimension</th>
+              <th>Japanese <a href="../glossary.html#on" style="color: var(--accent-blue);"><em>On</em> (Morae)</a></th>
+              <th>English Syllables</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Acoustic Duration</strong></td>
+              <td>Uniform short phonetic pulse (vowel duration).</td>
+              <td>Variable consonant-heavy word chunks.</td>
+            </tr>
+            <tr>
+              <td><strong>Information Density</strong></td>
+              <td>Low. 17 <em>on</em> contains roughly 6 to 8 words.</td>
+              <td>High. 17 English syllables can hold 12 to 16 words.</td>
+            </tr>
+            <tr>
+              <td><strong>Modern Recommendation</strong></td>
+              <td>Follow traditional 5-7-5 <a href="../glossary.html#teikei" style="color: var(--accent-blue);"><em>teikei</em></a> cadence.</td>
+              <td>Write 3 lines (short-long-short), total 10 to 14 syllables.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="background: #fff1f2; border: 1px solid #fecdd3; padding: 14px; border-radius: 6px; margin-top: 14px;">
+          <strong style="color: #9f1239;"><a href="../glossary.html#senryu" style="color: #9f1239; text-decoration: underline;">Haiku vs. Senryu</a>:</strong>
+          <ul style="margin: 8px 0 0 20px; font-size: 15px; line-height: 1.6;">
+            <li><strong>Haiku:</strong> Grounded in nature, ecology, existential presence, and seasonal awareness (<a href="../glossary.html#kigo" style="color: var(--accent-blue);"><em>kigo</em></a>). Tone is reverent, contemplative, or bittersweet (<a href="../glossary.html#mono-no-aware" style="color: var(--accent-blue);"><em>mono no aware</em></a>).</li>
+            <li><strong>Senryu:</strong> Focuses on human relationships, psychological ironies, workplace cynicism, or comedy. No seasonal word required.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Card 6: Application (Fast vs Deep) -->
+      <article id="card-application" class="visual-card">
+        <h3>5. Composition Heuristics: Fast vs. Deep</h3>
+
+        <div class="ref-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px;">
+          <div style="background: #f0fdf4; border: 1px solid #bbf7d0; padding: 16px; border-radius: 8px;">
+            <h4 style="color: #166534; margin-bottom: 8px;">The 60-Second "Snapshot"</h4>
+            <p style="font-size: 14px; margin-bottom: 10px;">Use on walks (<em>ginko</em> / haiku walks) or when something in your immediate surroundings catches your eye.</p>
+            <ol style="margin-left: 18px; font-size: 14px; line-height: 1.6;">
+              <li><strong>Line 1 (Anchor):</strong> Where/When &mdash; <em>November drizzle</em></li>
+              <li><strong>Line 2 (Action):</strong> What moves &mdash; <em>a yellow school bus idles</em></li>
+              <li><strong>Line 3 (Sensory):</strong> The echo &mdash; <em>red tail lights in puddles</em></li>
+            </ol>
+          </div>
+
+          <div style="background: #eff6ff; border: 1px solid #bfdbfe; padding: 16px; border-radius: 8px;">
+            <h4 style="color: #1e40af; margin-bottom: 8px;">The Deep Contemplative Cut</h4>
+            <p style="font-size: 14px; margin-bottom: 10px;">Use when dealing with unspoken emotion, solitude, love, or the passage of years.</p>
+            <ol style="margin-left: 18px; font-size: 14px; line-height: 1.6;">
+              <li><strong>Rule 1:</strong> Identify the human feeling, then <em>delete the word</em>.</li>
+              <li><strong>Rule 2:</strong> Select a modest physical object carrying that texture (rust, stone, dry leaves).</li>
+              <li><strong>Rule 3:</strong> Anchor it to a seasonal fact across a dash.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div style="margin-top: 18px; background: #fafaf9; border: 1px solid #e7e5e4; padding: 14px; border-radius: 6px;">
+          <strong>Common Seasonal Categories (<a href="../glossary.html#kigo" style="color: var(--accent-blue);"><em>Kigo</em></a>) &amp; Relational Axes:</strong>
+          <div style="display: flex; gap: 12px; margin-top: 8px; flex-wrap: wrap; font-size: 13px;">
+            <span class="technique-tag">Spring: Cherry blossoms, thaw, mud, seeds</span>
+            <span class="technique-tag">Summer: Cicadas, thunderhead, dust, shade</span>
+            <span class="technique-tag">Autumn: Harvest moon, crickets, smoke, chill</span>
+            <span class="technique-tag">Winter: Bare branch, frost, dry snow, silence</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 7: Checkpoint 2 -->
+      <article id="card-chk-2" class="visual-card checkpoint-card">
+        <h4>Checkpoint 2: Deep Contemplative Composition</h4>
+        <p style="margin-bottom: 14px; font-size: 16px;">
+          Which approach best produces a deeply contemplative haiku that avoids sentimental melodrama?
+        </p>
+        <div class="options-list">
+          <button class="option-btn" data-index="0">
+            Explicitly stating your internal sadness in the middle line so the reader understands your heart.
+          </button>
+          <button class="option-btn" data-index="1">
+            Padding the lines with decorative adjectives like "glorious" and "wondrous" to reach seventeen syllables.
+          </button>
+          <button class="option-btn" data-index="2">
+            Juxtaposing an unadorned, humble physical object with a seasonal anchor across a structural cut.
+          </button>
+          <button class="option-btn" data-index="3">
+            Ending the final line with an end-rhyme couplet to give the poem a memorable musical resolution.
+          </button>
+        </div>
+        <div class="checkpoint-feedback"></div>
+      </article>
+
+      <!-- Card 8: Summary -->
+      <article id="card-summary" class="visual-card">
+        <h3>6. Synthesis &amp; Daily Practice Routine</h3>
+        <p>You now possess both the historical understanding and the practical tooling to compose authentic haiku.</p>
+        <div style="background: #fdfbf7; border: 1px solid var(--border-light); padding: 18px; border-radius: 8px; margin: 16px 0;">
+          <h4 style="margin-bottom: 8px;">Your Daily 3-Minute Haiku Workout:</h4>
+          <ul style="margin-left: 20px; font-size: 16px; line-height: 1.7;">
+            <li>Look away from screens toward a window or outdoors.</li>
+            <li>Pick <strong>one still object</strong> (chair, fence, tree branch, mug).</li>
+            <li>Observe <strong>one sensory shift</strong> (light angle, wind gust, steam, bird movement).</li>
+            <li>Draft 3 lines: Short &mdash; Long &mdash; Short. Cut with a dash. Do not explain.</li>
+          </ul>
+        </div>
+        <div style="margin-top: 18px; padding: 14px; background: #fafaf9; border: 1px solid var(--border-light); border-radius: 6px; font-family: var(--font-sans); font-size: 14px;">
+          <strong>Workspace Documents &amp; Companion References:</strong>
+          <div style="margin-top: 6px; display: flex; gap: 14px; flex-wrap: wrap;">
+            <a href="../mission.html" style="color: var(--accent-blue); font-weight: bold;">Mission &amp; Goals</a> &bull;
+            <a href="../glossary.html" style="color: var(--accent-blue); font-weight: bold;">Canonical Glossary</a> &bull;
+            <a href="../resources.html" style="color: var(--accent-blue); font-weight: bold;">Resources &amp; Communities</a> &bull;
+            <a href="../reference/haiku-quick-reference.html" style="color: var(--accent-blue); font-weight: bold;">Quick Reference Sheet</a>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <!-- Demonstrated Learning Evidence Block -->
+    <section class="evidence-section">
+      <h3>Demonstrated Learning Evidence</h3>
+      <p style="font-size: 14px; color: var(--text-muted);">
+        When you complete the checkpoints above, this block records your verified mastery for the workspace learning records.
+      </p>
+      <div id="evidence-text" class="evidence-box">Loading evidence record...</div>
+      <button id="copy-evidence-btn" class="copy-evidence-btn">Copy Evidence to Clipboard</button>
+    </section>
+
+    <!-- Complete Audio Transcript Expander -->
+    <details class="transcript-details">
+      <summary>View Complete Spoken Narration Transcript</summary>
+      <div style="margin-top: 14px; font-size: 15px; line-height: 1.7; color: var(--text-muted);">
+        <p><strong>1. The Essence of the Instant:</strong> Welcome to Mastering Haiku. Most people think a haiku is just a five-seven-five syllable poem about flowers. But in reality, haiku is a three-hundred-year-old technology for capturing the fleeting present moment. When you write a true haiku, you are not describing an abstract idea. You are holding two physical realities side by side, allowing a sudden spark of insight to leap across the gap. By the end of this lesson, you will know how to construct both spontaneous sixty-second snapshots and layered, deeply moving verse that lingers in the mind.</p>
+        <p style="margin-top: 10px;"><strong>2. The Core Engine: Juxtaposition &amp; The Cut:</strong> Let us examine the engine of a haiku. In classical poetics, this is called toriawase, or juxtaposition. A great haiku almost never talks about just one thing. Instead, it places two sensory images together, separated by a structural cut known as a kireji. In English, we mark this cut with a dash, a colon, or a line break. Think of it like an electric circuit. One image is the positive terminal. The other image is the negative terminal. When you place them in the same three lines, the spark leaps across the empty space. That empty space is called yohaku. If you explain the connection to the reader, you kill the poem. Your job is simply to present the two images cleanly, and let the reader feel the spark.</p>
+        <p style="margin-top: 10px;"><strong>3. Masterwork Analysis: Bashō &amp; Buson:</strong> Consider the most famous haiku in world history, composed by Matsuo Basho in sixteen eighty-six. In English: Old pond. A frog jumps in. The sound of water. Notice the structure. The first image is the old pond: ancient, still, unchanging stone and water. Then comes the cut. Then the second image: a tiny living frog, a sudden splash, the fleeting acoustic sound. Basho contrasts eternity with a split-second splash. Now listen to Yosa Buson: On the temple bell, resting, asleep: a butterfly. Look at the sensory pairing: a massive, cold, resonant bronze temple bell, contrasted with the delicate, silent, paper-thin wing of a sleeping butterfly. The poetry is not in the bell. The poetry is not in the butterfly. The poetry lives in the silence between them.</p>
+        <p style="margin-top: 10px;"><strong>4. The 5-7-5 Syllable Myth &amp; Modern Craft:</strong> Here is the biggest misconception in modern poetry: counting five, seven, five syllables in English. In Japanese, poets count on, or morae. These are acoustic time units, much shorter than English syllables. Saying Tokyo takes two English syllables, but four Japanese on. If you cram seventeen English syllables into a poem, it becomes bloated, cluttered with filler words like the, and, or very. Contemporary English masters write in three lines with a short, long, short rhythm, usually between ten and fourteen syllables. Furthermore, beware of senryu. If your poem focuses on human irony, workplace irritation, or humor without nature or a season, it is a senryu, not a haiku. Haiku demands objective presence and seasonal resonance, known as kigo.</p>
+        <p style="margin-top: 10px;"><strong>5. Technique: Fast Snapshots vs Deep Verse:</strong> Now, how do you actually write them? You have two primary techniques. For a quick sixty-second haiku, use the Three-Beat Snapshot. Line one sets the anchor: where or when, such as autumn dusk. Line two captures the immediate movement: a crow snaps a pine twig. Line three delivers the sensory echo: the sharp snap lingering in cold air. To write a deep, thought-provoking haiku, use the Resonant Cut method. Start with a quiet human emotion like longing or aging, but never name it. Instead, find a humble, concrete physical object that mirrors that feeling: a rusty hinge, water dripping from a gutter, a moth against a window screen. Pair that object across a dash with a broader seasonal truth. The emotion will radiate without you ever speaking it.</p>
+        <p style="margin-top: 10px;"><strong>6. Summary &amp; Daily Practice:</strong> To summarize: a great haiku is a three-line sensory encounter. It relies on two juxtaposed images, a sharp cut, and an unsaid resonance. Forget the rigid seventeen syllable rule; focus on ten to fourteen syllables that capture a single breath. Today, step outside or look out your window. Pick one thing that is still, and one thing that is moving. Place a dash between them. You have written a haiku. Review your quick reference sheet in the workspace, and capture your daily snapshot.</p>
+      </div>
+    </details>
+
+    <!-- Book Chapter Pagination -->
+    <div class="chapter-navigation">
+      <a href="../index.html" class="chapter-nav-btn">&larr; Folio Table of Contents</a>
+      <a href="0002-kigo-and-senryu.html" class="chapter-nav-btn primary">Chapter II: The Seasonal Soul &rarr;</a>
+    </div>
+  </div>
+
+  <!-- Lesson Data Contract for player.js -->
+  <script id="lesson-data" type="application/json">
+  {
+    "id": "0001",
+    "title": "Mastering Haiku: Mechanics, Juxtaposition, and Deep Resonance",
+    "missionOutcome": "Compose spontaneous 60-second snapshots and deep contemplative haiku using juxtaposition, the cut, and seasonal resonance without mechanical 5-7-5 padding.",
+    "segments": [
+      {
+        "id": "seg-motivation",
+        "type": "motivation",
+        "title": "The Essence of the Instant",
+        "visualCardId": "card-motivation",
+        "durationSeconds": 34.58
+      },
+      {
+        "id": "seg-principle",
+        "type": "concept",
+        "title": "The Core Engine: Juxtaposition & The Cut",
+        "visualCardId": "card-principle",
+        "durationSeconds": 44.43
+      },
+      {
+        "id": "seg-examples",
+        "type": "example",
+        "title": "Masterwork Analysis: Bashō & Buson",
+        "visualCardId": "card-examples",
+        "durationSeconds": 49.47
+      },
+      {
+        "id": "chk-1",
+        "type": "checkpoint",
+        "title": "Checkpoint 1: Juxtaposition",
+        "visualCardId": "card-chk-1",
+        "durationSeconds": 5.12
+      },
+      {
+        "id": "seg-contrast",
+        "type": "concept",
+        "title": "The 5-7-5 Syllable Myth & Modern Craft",
+        "visualCardId": "card-contrast",
+        "durationSeconds": 46.84
+      },
+      {
+        "id": "seg-application",
+        "type": "example",
+        "title": "Technique: Fast Snapshots vs Deep Verse",
+        "visualCardId": "card-application",
+        "durationSeconds": 46.20
+      },
+      {
+        "id": "chk-2",
+        "type": "checkpoint",
+        "title": "Checkpoint 2: Fast vs Deep Mastery",
+        "visualCardId": "card-chk-2",
+        "durationSeconds": 5.03
+      },
+      {
+        "id": "seg-summary",
+        "type": "summary",
+        "title": "Summary & Daily Practice",
+        "visualCardId": "card-summary",
+        "durationSeconds": 30.76
+      }
+    ],
+    "checkpoints": [
+      {
+        "id": "chk-1",
+        "segmentId": "chk-1",
+        "question": "Why do master haiku poets deliberately avoid explaining how the two images in a poem relate to each other?",
+        "correctIndex": 0,
+        "explanation": "Master haiku preserves yohaku (the resonant white space). The unstated cognitive gap between the two images is precisely what allows the reader's imagination to spark the emotional realization."
+      },
+      {
+        "id": "chk-2",
+        "segmentId": "chk-2",
+        "question": "Which approach best produces a deeply contemplative haiku that avoids sentimental melodrama?",
+        "correctIndex": 2,
+        "explanation": "Deep haiku avoids naming emotions directly; instead, it grounds human feeling in an unadorned physical object and pairs it across a cut with a seasonal anchor, producing objective resonance."
+      }
+    ]
+  }
+  </script>
+
+  <!-- Player Script -->
+  <script src="../assets/player.js"></script>
+  <script src="../assets/pronounce.js"></script>
+</body>
+</html>

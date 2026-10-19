@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Poetic Imagery & Sensory Anchor Cheatsheet &bull; Haiku Studio</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+  <style>
+    @media print {
+      body { background: white; padding: 0; font-size: 13px; }
+      .lesson-container { box-shadow: none; border: none; padding: 0; max-width: 100%; }
+      .no-print { display: none; }
+      .copy-line-btn { display: none; }
+    }
+    .filter-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 20px 0;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .filter-btn {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--border-light);
+      background: var(--bg-card);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .filter-btn:hover {
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
+    }
+    .filter-btn.active {
+      background: var(--accent-blue);
+      color: #ffffff;
+      border-color: var(--accent-blue);
+    }
+    .imagery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+    @media (max-width: 600px) {
+      .imagery-grid { grid-template-columns: 1fr; }
+    }
+    .imagery-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .imagery-card:hover {
+      box-shadow: var(--shadow-sm);
+      border-color: #cbd5e1;
+    }
+    .imagery-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+    .imagery-name {
+      font-family: var(--font-sans);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .imagery-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: #e2e8f0;
+      color: #334155;
+    }
+    .imagery-tag.spring { background: #dcfce7; color: #166534; }
+    .imagery-tag.summer { background: #fef9c3; color: #854d0e; }
+    .imagery-tag.autumn { background: #ffedd5; color: #9a3412; }
+    .imagery-tag.winter { background: #e0f2fe; color: #075985; }
+    .imagery-tag.any { background: #f3e8ff; color: #6b21a8; }
+
+    .poetic-line {
+      font-family: var(--font-serif);
+      font-size: 17px;
+      line-height: 1.5;
+      font-style: italic;
+      color: #1e293b;
+      margin: 6px 0 12px 0;
+      padding-left: 10px;
+      border-left: 2px solid var(--accent-gold);
+    }
+    .imagery-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      font-family: var(--font-sans);
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px dotted var(--border-light);
+    }
+    .copy-line-btn {
+      background: transparent;
+      border: 1px solid var(--border-light);
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-family: var(--font-sans);
+      cursor: pointer;
+      color: var(--text-muted);
+      transition: all 0.15s ease;
+    }
+    .copy-line-btn:hover {
+      background: #f1ede4;
+      color: var(--text-main);
+    }
+    .instruction-card {
+      background: #fdfbf7;
+      border: 1px solid var(--border-light);
+      border-left: 4px solid var(--accent-gold);
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="lesson-container">
+    <!-- Running Header (Book Folio Bar) -->
+    <nav class="lesson-nav no-print" aria-label="Book Navigation">
+      <a href="../index.html" class="dashboard-link">&lang; Course Dashboard</a>
+      <span class="lesson-index-badge">Appendix A &bull; Sensory Plates Catalog</span>
+    </nav>
+
+    <!-- Header -->
+    <div class="lesson-header">
+      <button class="print-btn no-print" style="float: right; padding: 6px 14px; font-size: 14px; cursor: pointer; background: #2563eb; color: white; border: none; border-radius: 4px;" onclick="window.print()">Print Cheatsheet</button>
+      <div class="lesson-badge">Composition Catalog</div>
+      <h1 class="lesson-title">Poetic Imagery &amp; Sensory Anchor Cheatsheet</h1>
+      <p style="color: var(--text-muted); font-size: 16px;">
+        Common objects, weather events, hours of time, and seasonal markers with distilled, ready-to-cut poetic one-liners. Also in markdown: <a href="POETIC-IMAGERY-CHEATSHEET.md" style="color: var(--accent-blue);">POETIC-IMAGERY-CHEATSHEET.md</a>.
+      </p>
+    </div>
+
+    <!-- Instruction Guide -->
+    <div class="instruction-card">
+      <strong>How to Use This Cheatsheet for Composition:</strong>
+      <p style="margin-top: 6px;">
+        Select any sensory anchor below as your <strong>Image A</strong> (the context). Place a cut (<a href="../glossary.html#kireji" style="color: var(--accent-blue);"><em>kireji</em></a>: &mdash; or :) immediately after it. Then observe or imagine a sudden, contrasting action as your <strong>Image B</strong>. Do not explain the gap (<a href="../glossary.html#yohaku" style="color: var(--accent-blue);"><em>yohaku</em></a>)&mdash;let the poetry spark between them.
+      </p>
+    </div>
+
+    <!-- Category Filters -->
+    <div class="filter-bar no-print" role="tablist">
+      <button class="filter-btn active" data-filter="all">All (30)</button>
+      <button class="filter-btn" data-filter="weather">Weather &amp; Sky</button>
+      <button class="filter-btn" data-filter="time">Time of Day</button>
+      <button class="filter-btn" data-filter="objects">Common Objects</button>
+      <button class="filter-btn" data-filter="flora">Flora &amp; Earth</button>
+      <button class="filter-btn" data-filter="fauna">Creatures</button>
+    </div>
+
+    <!-- Imagery Cards Grid -->
+    <main class="imagery-grid">
+
+      <!-- Weather & Atmosphere -->
+      <article class="imagery-card" data-category="weather">
+        <div>
+          <div class="imagery-header">
+            <span class="imagery-name">Morning Frost</span>
+            <span class="imagery-tag winter">Winter Kigo</span>
+          </div>
+          <div class="poetic-line">&ldquo;A silver skin tightening over the quiet grass.&rdquo;</div>
+        </div>
+        <div class="imagery-footer">
+          <span>Sensory: Cold touch, crystalline silence</span>
+          <button class="copy-line-btn" data-text="morning frost &mdash; a silver skin tightening over quiet grass">Copy Line</button>
+        </div>
+      </article>
+
+      <article class="imagery-card" data-category="weather">
+        <div>
+          <div class="imagery-header">
+            <span class="imagery-name">Sudden Downpour</span>
+            <span class="imagery-tag summer">Summer Kigo</span>
+          </div>
+          <div class="poetic-line">&ldquo;The street turns to dark mirrors under drumming air.&rdquo;</div>
+        </div>
+        <div class="imagery-footer">
+          <span>Sensory: Heavy auditory rhythm, sudden slickness</span>
+          <button class="copy-line-btn" data-text="sudden downpour &mdash; dark mirrors drumming in the street">Copy Line</button>
+        </div>
+      </article>
+
+      <article class="imagery-card" data-category="weather">
+        <div>
+          <div class="imagery-header">
+            <span class="imagery-name">Autumn Fog</span>
+            <span class="imagery-tag autumn">Autumn Kigo</span>
+          </div>
+          <div class="poetic-line">&ldquo;Distant trees dissolve into gray breath.&rdquo;</div>
+        </div>
+        <div class="imagery-footer">
+          <span>Sensory: Vanishing horizon, damp chill</span>
+          <button class="copy-line-btn" data-text="autumn fog &mdash; distant trees dissolve into gray breath">Copy Line</button>
+        </div>
+      </article>
+
+      <article class="imagery-card" data-category="weather">
+        <div>
+          <div class="imagery-header">
+            <span class="imagery-name">Heat Shimmer</span>
+            <span class="imagery-tag summer">Summer Kigo</span>
+          </div>
+          <div class="poetic-line">&ldquo;The highway breathing like liquid glass in the white sun.&rdquo;</div>
+        </div>
+        <div class="imagery-footer">
+          <span>Sensory: Optical distortion, suffocating warmth</span>
+          <button class="copy-line-btn" data-text="heat shimmer &mdash; the highway breathing like liquid glass">Copy Line</button>
+        </div>
+      </article>
+
+      <article class="imagery-card" data-category="weather">
+        <div>
+          <div class="imagery-header">
+            <span class="imagery-name">Freezing Rain</span>
+            <span class="imagery-tag winter">Winter Kigo</span>
+          </div>
+          <div class="poetic-line">&ldquo;Twigs encased in glass, clicking in the dark.&rdquo;</div>
+        </div>
+        <div class="imagery-footer">
+          <span>Sensory: Brittle acoustics, petrified wood</span>
+          <button class="copy-line-btn" data-text="freezing rain &mdash; glass twigs clicking in the dark">Copy Line</button>
+        </div>
+      </article>
+
+      <article class="imagery-card" data-category="weather">
+        <div>
+          <div class="imagery-header">
+            <span class="imagery-name">Thunderhead</span>
+            <span class="imagery-tag summer">Summer Kigo</span>
+          </div>
+          <div class="poetic-line">&ldquo;An anvil of purple slate bruising the afternoon sky.&rdquo;</div>
+        </div>
+        <div class="imagery-footer">
+          <span>Sensory: Looming weight, electric ozone</span>
+          <button class="copy-line-btn" data-text="thunderhead &mdash; an anvil of purple slate bruising the sky">Copy Line</button>
+        </div>
+      </article>
+
+      <!-- Time of Day & Ephemerality -->
+      <article class="imagery-card" data-category="time">
+        <div>
+          <div class="imagery-header">
+            <span class="imagery-name">False Dawn</span>
+            <span class="imagery-tag any">Daybreak</span>
+          </div>
+          <div class="poetic-line">&ldquo;A thin blue slit cutting the throat of the night.&rdquo;</div>
+        </div>
+        <div class="imagery-footer">
+          <span>Sensory: Incipient light, pre-birdsong chill</span>
+          <button class="copy-line-btn" data-text="false dawn &mdash; a thin blue slit cutting the night">Copy Line</button>
+        </div>
+      </article>
+
+      <article class="imagery-card" data-category="time">
+        <div>
+          <div class="imagery-header">
+            <span class="imagery-name">Noon Glare</span>
+            <span class="imagery-tag summer">Midday</span>
+          </div>
+          <div class="poetic-line">&ldquo;White sun erasing every shadow into chalk.&rdquo;</div>
+        </div>
+        <div class="imagery-footer">
+          <span>Sensory: Bleached contrast, heavy silence</span>
+          <button class="copy-line-btn" data-text="noon glare &mdash; white sun erasing shadows into chalk">Copy Line</button>
+        </div>
+      </article>
+
+      <article class="imagery-card" data-category="time">
+        <div>
+          <div class="imagery-header">
+            <span class="imagery-name">The Blue Hour (Dusk)</span>
+            <span class="imagery-tag any">Twilight</span>
+          </div>
+          <div class="poetic-line">&ldquo;The sky holding blue water just before spilling into night.&rdquo;</div>
+        </div>
+        <div class="imagery-footer">
+          <span>Sensory: Melancholy pause, mono no aware</span>
+          <button class="copy-line-btn" data-text="the blue hour &mdash; sky holding water before spilling into night">Copy Line</button>
+        </div>
+      </article>
+
+      <article class="imagery-card" data-category="time">
+        <div>
+          <div class="imagery-header">
+            <span class="imagery-name">Midnight Silence</span>
+            <span class="imagery-tag any">Night</span>
+          </div>
+          <div class="poetic-line">&ldquo;A clock ticking only when nobody breathes.&rdquo;</div>
+        </div>
+        <div class="imagery-footer">
+          <span>Sensory: Intimate solitude, hollow acoustics</span>
+          <button class="copy-line-btn" data-text="midnight silence &mdash; clock ticking only when no one breathes">Copy Line</button>
+        </div>
+      </article>
+
+      <!-- Common Objects & Habitation -->
+      <article class="imagery-card" data-category="objects">
+        <div>
+          <div class="imagery-header">
+            <span class="imagery-name">Rusty Gate Latch</span>
+            <span class="imagery-tag any">Object</span>
+          </div>
+          <div class="poetic-line">&ldquo;Cold iron that complains when the wind leans in.&rdquo;</div>
+        </div>
+        <div class="imagery-footer">
+          <span>Sensory: Rough metallic texture, shrill hinge squeak</span>
+          <button class="copy-line-btn" data-text="rusty gate latch &mdash; cold iron complaining in the wind">Copy Line</button>
+        </div>
+      </article>
+
+      <article class="imagery-card" data-category="objects">
+        <div>
+          <div class="imagery-header">
+            <span class="imagery-name">Lukewarm Tea</span>
+            <span class="imagery-tag any">Wabi-sabi</span>
+          </div>
+          <div class="poetic-line">&ldquo;A pale ring on wood where warmth used to be.&rdquo;</div>
+        </div>
+        <div class="imagery-footer">
+          <span>Sensory: Fading warmth, solitary passage of minutes</span>
+          <button class="copy-line-btn" data-text="lukewarm tea &mdash; a pale ring where warmth used to be">Copy Line</button>
+        </div>
+      </article>
+
+      <article class="imagery-card" data-category="objects">
+        <div>
+          <div class="imagery-header">
+            <span class="imagery-name">Ticking Engine</span>
+            <span class="imagery-tag autumn">Autumn Mood</span>
+          </div>
+          <div class="poetic-line">&ldquo;Hot metal contracting slowly into the November dark.&rdquo;</div>
+        </div>
+        <div class="imagery-footer">
+          <span>Sensory: Rhythm of cooling, post-journey solitude</span>
+          <button class="copy-line-btn" data-text="engine ticking down &mdash; hot metal contracting in November dark">Copy Line</button>
+        </div>
+      </article>
+
+      <article class="imagery-card" data-category="objects">
+        <div>
+          <div class="imagery-header">
+            <span class="imagery-name">Wet Umbrella</span>
+            <span class="imagery-tag spring">Spring / Rain</span>
+          </div>
+          <div class="poetic-line">&ldquo;Black silk dripping into a puddle on the porch floor.&rdquo;</div>
+        </div>
+        <div class="imagery-footer">
+          <span>Sensory: Smell of damp cloth, slow rhythmic drips</span>
+          <button class="copy-line-btn" data-text="wet umbrella &mdash; black silk dripping into a porch puddle">Copy Line</button>
+        </div>
+      </article>
+
+      <article class="imagery-card" data-category="objects">
+        <div>
+          <div class="imagery-header">
+            <span class="imagery-name">Forgotten Coat on Peg</span>
+            <span class="imagery-tag winter">Winter</span>
+          </div>
+          <div class="poetic-line">&ldquo;Shoulders of heavy wool holding the shape of someone who left.&rdquo;</div>
+        </div>
+        <div class="imagery-footer">
+          <span>Sensory: Absent presence, dusty fiber</span>
+          <button class="copy-line-btn" data-text="coat on a peg &mdash; wool holding the shape of someone gone">Copy Line</button>
+        </div>
+      </article>
+
+      <article class="imagery-card" data-category="objects">
+        <div>
+          <div class="imagery-header">
+            <span class="imagery-name">Cracked Ceramic Bowl</span>
+            <span class="imagery-tag any">Wabi-sabi</span>
+          </div>
+          <div class="poetic-line">&ldquo;A seam of gold repair where rough hands touched the clay.&rdquo;</div>
+        </div>
+        <div class="imagery-footer">
+          <span>Sensory: Uneven glaze, enduring imperfection</span>
+          <button class="copy-line-btn" data-text="cracked bowl &mdash; gold repair where rough hands touched the clay">Copy Line</button>
+        </div>
+      </article>
+
+      <article class="imagery-card" data-category="objects">
+        <div>
+          <div class="imagery-header">
+            <span class="imagery-name">Clothesline in Wind</span>
+            <span class="imagery-tag spring">Spring</span>
+          </div>
+          <div class="poetic-line">&ldquo;Empty linen billowing like ghosts learning how to run.&rdquo;</div>
+        </div>
+        <div class="imagery-footer">
+          <span>Sensory: Snapping fabric, fresh breeze</span>
+          <button class="copy-line-btn" data-text="clothesline in wind &mdash; empty linen billowing like running ghosts">Copy Line</button>
+        </div>
+      </article>
+
+      <!-- Flora & Botanical Life -->
+      <article class="imagery-card" data-category="flora">
+        <div>
+          <div class="imagery-header">
+            <span class="imagery-name">Cherry Blossom Drift</span>
+            <span class="imagery-tag spring">Spring Kigo</span>
+          </div>
+          <div class="poetic-line">&ldquo;A confetti of pale light falling faster than snow.&rdquo;</div>
+        </div>
+        <div class="imagery-footer">
+          <span>Sensory: Weightless swirl, peak transience</span>
+          <button class="copy-line-btn" data-text="cherry blossom drift &mdash; pale light falling faster than snow">Copy Line</button>
+        </div>
+      </article>
+
+      <article class="imagery-card" data-category="flora">
+        <div>
+          <div class="imagery-header">
+            <span class="imagery-name">Fallen Persimmon</span>
+            <span class="imagery-tag autumn">Autumn Kigo</span>
+          </div>
+          <div class="poetic-line">&ldquo;An orange sun bruised open against wet gravel.&rdquo;</div>
+        </div>
+        <div class="imagery-footer">
+          <span>Sensory: Pungent sweetness, overripe decay</span>
+          <button class="copy-line-btn" data-text="fallen persimmon &mdash; an orange sun bruised open on gravel">Copy Line</button>
+        </div>
+      </article>
+
+      <article class="imagery-card" data-category="flora">
+        <div>
+          <div class="imagery-header">
+            <span class="imagery-name">Bare Winter Oak</span>
+            <span class="imagery-tag winter">Winter Kigo</span>
+          </div>
+          <div class="poetic-line">&ldquo;Black iron veins hammered into the gray sky.&rdquo;</div>
+        </div>
+        <div class="imagery-footer">
+          <span>Sensory: Stark silhouette, stripped austerity</span>
+          <button class="copy-line-btn" data-text="bare winter oak &mdash; black iron veins hammered into gray sky">Copy Line</button>
+        </div>
+      </article>
+
+      <article class="imagery-card" data-category="flora">
+        <div>
+          <div class="imagery-header">
+            <span class="imagery-name">Pine Needles on Rock</span>
+            <span class="imagery-tag any">Forest</span>
+          </div>
+          <div class="poetic-line">&ldquo;A copper weave muffling the footsteps of the rain.&rdquo;</div>
+        </div>
+        <div class="imagery-footer">
+          <span>Sensory: Resinous aroma, cushioned sound</span>
+          <button class="copy-line-btn" data-text="pine needles on rock &mdash; copper weave muffling footsteps of rain">Copy Line</button>
+        </div>
+      </article>
+
+      <article class="imagery-card" data-category="flora">
+        <div>
+          <div class="imagery-header">
+            <span class="imagery-name">Dry Creek Bed</span>
+            <span class="imagery-tag summer">Summer</span>
+          </div>
+          <div class="poetic-line">&ldquo;Smooth white river stones waiting for the sky to break.&rdquo;</div>
+        </div>
+        <div class="imagery-footer">
+          <span>Sensory: Chalky dryness, expectant silence</span>
+          <button class="copy-line-btn" data-text="dry creek bed &mdash; smooth stones waiting for the sky to break">Copy Line</button>
+        </div>
+      </article>
+
+      <article class="imagery-card" data-category="flora">
+        <div>
+          <div class="imagery-header">
+            <span class="imagery-name">Damp Tree Moss</span>
+            <span class="imagery-tag any">Wabi-sabi</span>
+          </div>
+          <div class="poetic-line">&ldquo;A green velvet coat softening the scars of the bark.&rdquo;</div>
+        </div>
+        <div class="imagery-footer">
+          <span>Sensory: Sponge-like cushion, earthy scent</span>
+          <button class="copy-line-btn" data-text="damp tree moss &mdash; green velvet softening the scars of bark">Copy Line</button>
+        </div>
+      </article>
+
+      <!-- Fauna & Small Creatures -->
+      <article class="imagery-card" data-category="fauna">
+        <div>
+          <div class="imagery-header">
+            <span class="imagery-name">Garden Snail</span>
+            <span class="imagery-tag summer">Summer Kigo</span>
+          </div>
+          <div class="poetic-line">&ldquo;A silver trail carrying its house toward the mountain.&rdquo;</div>
+        </div>
+        <div class="imagery-footer">
+          <span>Sensory: Glazed sheen, unhurried persistence</span>
+          <button class="copy-line-btn" data-text="garden snail &mdash; carrying its house toward the mountain">Copy Line</button>
+        </div>
+      </article>
+
+      <article class="imagery-card" data-category="fauna">
+        <div>
+          <div class="imagery-header">
+            <span class="imagery-name">Crow on Wire</span>
+            <span class="imagery-tag winter">Winter Kigo</span>
+          </div>
+          <div class="poetic-line">&ldquo;A single black knot tied against the sunset.&rdquo;</div>
+        </div>
+        <div class="imagery-footer">
+          <span>Sensory: Harsh cry, graphic minimalism</span>
+          <button class="copy-line-btn" data-text="crow on a wire &mdash; a single black knot tied against sunset">Copy Line</button>
+        </div>
+      </article>
+
+      <article class="imagery-card" data-category="fauna">
+        <div>
+          <div class="imagery-header">
+            <span class="imagery-name">Moth at Window</span>
+            <span class="imagery-tag summer">Summer</span>
+          </div>
+          <div class="poetic-line">&ldquo;Dusty wings beating against the glass between heat and night.&rdquo;</div>
+        </div>
+        <div class="imagery-footer">
+          <span>Sensory: Papery fluttering, frantic longing</span>
+          <button class="copy-line-btn" data-text="moth at the glass &mdash; dusty wings beating between heat and night">Copy Line</button>
+        </div>
+      </article>
+
+      <article class="imagery-card" data-category="fauna">
+        <div>
+          <div class="imagery-header">
+            <span class="imagery-name">Empty Cicada Husk</span>
+            <span class="imagery-tag summer">Late Summer Kigo</span>
+          </div>
+          <div class="poetic-line">&ldquo;An amber ghost clinging to the pine, hollowed out by song.&rdquo;</div>
+        </div>
+        <div class="imagery-footer">
+          <span>Sensory: Translucent shell, phantom presence</span>
+          <button class="copy-line-btn" data-text="empty cicada husk &mdash; amber ghost hollowed out by song">Copy Line</button>
+        </div>
+      </article>
+
+      <article class="imagery-card" data-category="fauna">
+        <div>
+          <div class="imagery-header">
+            <span class="imagery-name">Firefly Pulse</span>
+            <span class="imagery-tag summer">Summer Kigo</span>
+          </div>
+          <div class="poetic-line">&ldquo;A cold green spark drifting through dark corn, gone before you look.&rdquo;</div>
+        </div>
+        <div class="imagery-footer">
+          <span>Sensory: Phosphorescent blink, summer dusk</span>
+          <button class="copy-line-btn" data-text="firefly pulse &mdash; a cold green spark drifting through dark corn">Copy Line</button>
+        </div>
+      </article>
+
+      <article class="imagery-card" data-category="fauna">
+        <div>
+          <div class="imagery-header">
+            <span class="imagery-name">Fish Breaking Water</span>
+            <span class="imagery-tag spring">Spring / Summer</span>
+          </div>
+          <div class="poetic-line">&ldquo;A silver needle stitching the pond surface to the evening air.&rdquo;</div>
+        </div>
+        <div class="imagery-footer">
+          <span>Sensory: Instantaneous ripple, concentric circles</span>
+          <button class="copy-line-btn" data-text="fish breaks the surface &mdash; a silver needle stitching water to air">Copy Line</button>
+        </div>
+      </article>
+
+    </main>
+
+    <!-- Footer Navigation -->
+    <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-family: var(--font-sans); font-size: 14px;">
+      <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+        <a href="../index.html" style="color: var(--accent-blue); text-decoration: none;">&larr; Studio Dashboard</a>
+        <a href="../glossary.html" style="color: var(--accent-blue); text-decoration: none;">Glossary</a>
+        <a href="haiku-quick-reference.html" style="color: var(--accent-blue); text-decoration: none;">Quick Matrix</a>
+      </div>
+      <div>
+        <a href="../lessons/0001-mastering-haiku.html" style="color: var(--accent-blue); font-weight: bold; text-decoration: none;">Practice in Audio Lesson 0001 &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Filter & Copy Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Filter buttons
+      const filterBtns = document.querySelectorAll(".filter-btn");
+      const cards = document.querySelectorAll(".imagery-card");
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+          filterBtns.forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          const filter = btn.dataset.filter;
+
+          cards.forEach(card => {
+            if (filter === "all" || card.dataset.category === filter) {
+              card.style.display = "flex";
+            } else {
+              card.style.display = "none";
+            }
+          });
+        });
+      });
+
+      // Copy Line buttons
+      document.querySelectorAll(".copy-line-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const text = btn.dataset.text;
+          navigator.clipboard.writeText(text).then(() => {
+            const original = btn.textContent;
+            btn.textContent = "Copied! ✓";
+            btn.style.color = "#15803d";
+            btn.style.borderColor = "#86efac";
+            setTimeout(() => {
+              btn.textContent = original;
+              btn.style.color = "";
+              btn.style.borderColor = "";
+            }, 2000);
+          });
+        });
+      });
+    });
+  </script>
+  <script src="../assets/pronounce.js"></script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Haiku Mission &bull; Objectives &amp; Scope</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    .mission-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 24px 0;
+    }
+    @media (max-width: 680px) {
+      .mission-grid { grid-template-columns: 1fr; }
+    }
+    .status-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-family: var(--font-sans);
+      background: var(--accent-green-light);
+      color: var(--accent-green);
+      border: 1px solid #86efac;
+    }
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 12px;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .check-icon {
+      color: var(--accent-green);
+      font-weight: bold;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="lesson-container">
+    <!-- Running Header (Book Folio Bar) -->
+    <nav class="lesson-nav" aria-label="Book Navigation">
+      <a href="index.html" class="dashboard-link">&lang; Course Dashboard</a>
+      <span class="lesson-index-badge">Prolegomena &bull; Pedagogical Compass</span>
+    </nav>
+
+    <!-- Header -->
+    <header class="lesson-header">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <div class="lesson-badge">Pedagogical Compass</div>
+        <span class="status-badge">Active Mission</span>
+      </div>
+      <h1 class="lesson-title">Mission: Mastering Haiku Composition &amp; Appreciation</h1>
+      <p style="color: var(--text-muted); font-size: 16px;">
+        The concrete real-world anchor for this learning workspace. Plain markdown version: <a href="MISSION.md" style="color: var(--accent-blue);">MISSION.md</a>.
+      </p>
+    </header>
+
+    <!-- Why -->
+    <div style="background: var(--accent-blue-light); border-left: 4px solid var(--accent-blue); padding: 20px; border-radius: 6px; margin: 24px 0;">
+      <h3 style="font-family: var(--font-sans); font-size: 18px; color: #1e3a8a; margin-bottom: 8px;">Why We Are Learning This</h3>
+      <p style="color: #1e3a8a; font-size: 17px; line-height: 1.6;">
+        Develop the instinctive creative ability to capture brief, resonant human and natural moments in precise 3-line verse, moving fluently between rapid spontaneous snapshots and layered, contemplative poetry that evokes profound emotional resonance in the reader.
+      </p>
+    </div>
+
+    <!-- Success Criteria -->
+    <div class="resource-card" style="border-left: 4px solid var(--accent-green);">
+      <h3 style="color: var(--accent-green); margin-bottom: 14px;">Success Looks Like (Observable Milestones)</h3>
+      <div class="checklist-item">
+        <span class="check-icon">&#10003;</span>
+        <span><strong>Rapid Snapshot:</strong> Write spontaneous "instant" haiku in under 60 seconds using the 3-beat sensory capture technique without artificial filler words.</span>
+      </div>
+      <div class="checklist-item">
+        <span class="check-icon">&#10003;</span>
+        <span><strong>Deep Resonance:</strong> Compose contemplative haiku utilizing <a href="glossary.html#toriawase" style="color: var(--accent-blue);"><em>toriawase</em></a> (juxtaposition) and the structural cut (<a href="glossary.html#kireji" style="color: var(--accent-blue);"><em>kireji</em></a>).</span>
+      </div>
+      <div class="checklist-item">
+        <span class="check-icon">&#10003;</span>
+        <span><strong>Phonetic Precision:</strong> Accurately distinguish Japanese <a href="glossary.html#on" style="color: var(--accent-blue);"><em>on</em></a> (morae) from English syllables to eliminate the amateur 5-7-5 syllable bloat.</span>
+      </div>
+      <div class="checklist-item">
+        <span class="check-icon">&#10003;</span>
+        <span><strong>Seasonal Depth:</strong> Identify and deploy <a href="glossary.html#kigo" style="color: var(--accent-blue);"><em>kigo</em></a> (seasonal anchors) to evoke cultural memory without spelling it out.</span>
+      </div>
+      <div class="checklist-item">
+        <span class="check-icon">&#10003;</span>
+        <span><strong>Genre Clarity:</strong> Instantly distinguish true haiku from <a href="glossary.html#senryu" style="color: var(--accent-blue);"><em>senryu</em></a> (human foibles/humor) and abstract pseudo-haiku.</span>
+      </div>
+      <div class="checklist-item">
+        <span class="check-icon">&#9675;</span>
+        <span><strong>Empirical Shasei &amp; Wabi-Sabi:</strong> Sketch empirical sensory facts without editorial adjectives (<a href="glossary.html#shasei" style="color: var(--accent-blue);"><em>shasei</em></a>) and compose single-object poems (<a href="glossary.html#ichibutsu-jitate" style="color: var(--accent-blue);"><em>ichibutsu-jitate</em></a>).</span>
+      </div>
+    </div>
+
+    <!-- Constraints and Scope -->
+    <div class="mission-grid">
+      <div class="resource-card">
+        <h3 style="color: var(--text-main);">Constraints</h3>
+        <ul style="margin: 8px 0 0 20px; font-size: 15px; line-height: 1.6; color: var(--text-muted);">
+          <li>Modern English haiku conventions (focusing on brevity, sensory immediacy, and 10–14 syllable cadence) prioritized alongside classical roots (5-7-5 onji).</li>
+          <li>Dual-mode delivery: Eyes-free audio narration paired with ears-free visual reference.</li>
+        </ul>
+      </div>
+
+      <div class="resource-card">
+        <h3 style="color: var(--accent-red);">Out of Scope</h3>
+        <ul style="margin: 8px 0 0 20px; font-size: 15px; line-height: 1.6; color: var(--text-muted);">
+          <li>Full <em>renga</em> / <em>renku</em> linked-verse multi-author composition parties.</li>
+          <li>Classical Edo-period Japanese archaic grammar rules beyond foundational terms.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Planned Curriculum Roadmap -->
+    <div class="resource-card" style="margin-top: 24px;">
+      <h3 style="color: var(--text-main); margin-bottom: 12px;">Planned Curriculum Roadmap</h3>
+      <div style="font-size: 15px; line-height: 1.8; color: var(--text-main);">
+        <div style="display: flex; justify-content: space-between; border-bottom: 1px dotted var(--border-light); padding: 6px 0;">
+          <span><strong>Lesson 0001:</strong> Mastering Haiku (Juxtaposition &amp; The Cut)</span>
+          <span style="color: var(--accent-green); font-weight: 700;">&#10003; Mastered</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; border-bottom: 1px dotted var(--border-light); padding: 6px 0;">
+          <span><strong>Lesson 0002:</strong> The Seasonal Soul &amp; The Human Mirror (Kigo &amp; Senryu)</span>
+          <span style="color: var(--accent-green); font-weight: 700;">&#10003; Mastered</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; border-bottom: 1px dotted var(--border-light); padding: 6px 0;">
+          <span><strong>Lesson 0003:</strong> The Art of Seeing (Shasei, Wabi-Sabi &amp; Ichibutsu-jitate)</span>
+          <span style="color: var(--accent-blue); font-weight: 700;">&#9654; Active Frontier</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; border-bottom: 1px dotted var(--border-light); padding: 6px 0; color: var(--text-muted);">
+          <span><strong>Lesson 0004:</strong> The Micro-Seasonal Saijiki: 72 Pentads &amp; Ginko</span>
+          <span>Upcoming</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; padding: 6px 0; color: var(--text-muted);">
+          <span><strong>Lesson 0005:</strong> Haibun &amp; The Journey: Weaving Prose with Epiphanic Verse</span>
+          <span>Upcoming</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Navigation -->
+    <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-light); display: flex; justify-content: space-between; font-family: var(--font-sans); font-size: 14px;">
+      <a href="index.html" style="color: var(--accent-blue); text-decoration: none;">&larr; Folio Table of Contents</a>
+      <a href="lessons/0003-shasei-and-wabi-sabi.html" style="color: var(--accent-blue); font-weight: bold; text-decoration: none;">Launch Chapter III: The Art of Seeing &rarr;</a>
+    </div>
+  </div>
+  <script src="assets/pronounce.js"></script>
+</body>
+</html>

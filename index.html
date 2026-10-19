@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Art of Haiku &bull; Central Course Dashboard &bull; Haiku Studio</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    /* Dashboard specific refinements */
+    .dashboard-hero {
+      text-align: center;
+      padding: 16px 0 32px 0;
+      border-bottom: 1px solid var(--border-light);
+      margin-bottom: 32px;
+    }
+    .hero-supertitle {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: 42px;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+      margin-bottom: 12px;
+    }
+    .hero-subtitle {
+      font-family: var(--font-serif);
+      font-size: 18.5px;
+      font-style: italic;
+      color: var(--text-muted);
+      max-width: 620px;
+      margin: 0 auto 16px auto;
+      line-height: 1.5;
+    }
+    .hero-fleuron {
+      color: var(--accent-gold);
+      font-size: 16px;
+      margin: 14px 0;
+    }
+    .hero-meta {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+    }
+
+    /* Mission Compass Callout */
+    .mission-compass-card {
+      background: var(--bg-subtle);
+      border-left: 4px solid var(--accent-blue);
+      border-radius: 0 4px 4px 0;
+      padding: 22px 26px;
+      margin-bottom: 36px;
+    }
+    .compass-title {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--accent-blue);
+      margin-bottom: 8px;
+    }
+    .compass-text {
+      font-size: 17.5px;
+      line-height: 1.6;
+      color: var(--text-main);
+      margin-bottom: 12px;
+    }
+    .compass-milestones {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--text-muted);
+      font-family: var(--font-sans);
+      border-top: 1px solid var(--border-light);
+      padding-top: 12px;
+    }
+    @media (max-width: 680px) {
+      .compass-milestones { grid-template-columns: 1fr; }
+    }
+    .milestone-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .milestone-icon {
+      color: var(--accent-green);
+      font-weight: bold;
+    }
+
+    /* Compendia Cards Grid */
+    .compendia-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+    @media (max-width: 680px) {
+      .compendia-grid { grid-template-columns: 1fr; }
+    }
+    .compendium-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 4px;
+      padding: 20px 22px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.15s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow-card);
+    }
+    .compendium-card:hover {
+      border-color: #cbd5e1;
+      background: var(--bg-surface);
+      transform: translateY(-2px);
+    }
+    .comp-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .comp-title {
+      font-family: var(--font-serif);
+      font-size: 19px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+    .comp-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Scriptorium */
+    .scriptorium {
+      background: #faf8f2;
+      border: 1px solid var(--border-light);
+      border-radius: 4px;
+      padding: 26px 30px;
+      margin: 40px 0;
+    }
+    .scriptorium-title {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+    .prompt-banner {
+      background: #ffffff;
+      border: 1px dashed var(--border-light);
+      padding: 12px 18px;
+      border-radius: 4px;
+      font-size: 15px;
+      margin: 16px 0;
+      color: #3f3c37;
+    }
+    .line-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .verse-input {
+      flex: 1;
+      padding: 10px 14px;
+      font-family: var(--font-serif);
+      font-size: 17px;
+      font-style: italic;
+      border: 1px solid var(--border-light);
+      border-radius: 4px;
+      background: #ffffff;
+      color: var(--text-main);
+      outline: none;
+    }
+    .verse-input:focus {
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 0 2px rgba(30, 58, 138, 0.1);
+    }
+    .meter-pill {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 4px;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-light);
+      color: var(--text-muted);
+      width: 84px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .scriptorium-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-light);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .book-btn {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 4px;
+      background: var(--text-main);
+      color: #ffffff;
+      border: none;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .book-btn:hover { background: #383531; }
+  </style>
+</head>
+<body>
+  <div class="lesson-container">
+    <!-- Running Header (Book Folio Bar) -->
+    <nav class="lesson-nav" aria-label="Book Navigation">
+      <span style="font-weight: 700; color: var(--text-main); letter-spacing: 0.12em;">&lang; Haiku Studio</span>
+      <span class="lesson-index-badge">Command Folio &bull; Autumn 2026</span>
+    </nav>
+
+    <!-- Dashboard Hero Header -->
+    <header class="dashboard-hero">
+      <div class="hero-supertitle">The Haiku Studio &bull; Master Edition</div>
+      <h1 class="hero-title">The Art of Haiku</h1>
+      <div class="hero-subtitle">
+        A Practical Treatise on the Mechanics, Seasonal Soul, &amp; Spontaneous Capture of the Instant
+      </div>
+      <div class="hero-fleuron">&#10086;</div>
+      <div class="hero-meta">Edo Lineage &bull; Contemporary English Poetics &bull; Kokoro Neural Audio</div>
+    </header>
+
+    <!-- Mission Compass Callout -->
+    <section class="mission-compass-card">
+      <div class="compass-title">Pedagogical Compass &bull; Mission Statement</div>
+      <div class="compass-text">
+        Develop the instinctive creative ability to capture brief, resonant human and natural moments in precise 3-line verse, moving fluently between rapid spontaneous snapshots and layered, contemplative poetry that evokes profound emotional resonance in the reader.
+      </div>
+      <div class="compass-milestones">
+        <div class="milestone-item"><span class="milestone-icon">&#10003;</span> Rapid 60-second snapshots (sensory anchor + cut)</div>
+        <div class="milestone-item"><span class="milestone-icon">&#10003;</span> Deep juxtaposition (<em>toriawase</em> &amp; <em>yohaku</em>)</div>
+        <div class="milestone-item"><span class="milestone-icon">&#10003;</span> Season frequencies (<em>kigo</em> &amp; <em>saijiki</em>)</div>
+        <div class="milestone-item"><span class="milestone-icon">&#10003;</span> Objective sketching (<em>shasei</em> &amp; <em>wabi-sabi</em>)</div>
+      </div>
+      <div style="margin-top: 12px; font-size: 13px; font-family: var(--font-sans);">
+        <a href="mission.html" style="color: var(--accent-blue); text-decoration: underline; font-weight: 600;">View Full Mission &amp; Constraints Document &rarr;</a>
+      </div>
+    </section>
+
+    <!-- Reader Ledger / Ex Libris -->
+    <section class="bookplate-card" style="background: var(--bg-card); border: 1px solid var(--border-light); border-radius: 4px; padding: 22px 26px; margin-bottom: 36px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-fine); padding-bottom: 10px; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+        <span style="font-family: var(--font-sans); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent-gold);">
+          Ex Libris &bull; Demonstrated Reader Ledger
+        </span>
+        <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <span class="lic-badge badge-mastered">&#10003; Ch. I Mastered</span>
+          <span class="lic-badge badge-mastered">&#10003; Ch. II Mastered</span>
+          <span class="lic-badge badge-active">&#9654; Ch. III Active</span>
+        </div>
+      </div>
+      <p style="font-size: 16px; line-height: 1.6; color: var(--text-main); margin-bottom: 0;">
+        <strong>Verified Mastery:</strong> Confirmed conceptual understanding of the cutting pause (<em>kireji</em>), 10–14 syllable acoustic cadence, image distance calibration across the cut, seasonal almanac psychological frequencies (<em>kigo</em>), and strict demarcation from satirical <em>senryu</em>.
+      </p>
+    </section>
+
+    <!-- Curriculum Roadmap (Present & Upcoming Lessons) -->
+    <section class="roadmap-section">
+      <div class="section-label">
+        <span>Curriculum Roadmap &bull; Chapters &amp; Field Recitations</span>
+        <span style="font-size: 11px; font-family: var(--font-mono); text-transform: none; letter-spacing: normal;">3 Available &bull; 2 Planned</span>
+      </div>
+
+      <div class="lesson-grid">
+        <!-- Lesson 0001 -->
+        <a href="lessons/0001-mastering-haiku.html" class="lesson-item-card">
+          <div class="lic-main">
+            <span class="lic-num">Chapter I</span>
+            <div>
+              <div class="lic-title">The Core Architecture &amp; Juxtaposition</div>
+              <div class="lic-desc">The electric spark across the cut (kireji), on vs. syllables, and the 60-second snapshot formula.</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <span style="font-family: var(--font-mono); font-size: 13px; color: var(--text-muted);">4:22</span>
+            <span class="lic-badge badge-mastered">&#10003; Mastered</span>
+          </div>
+        </a>
+
+        <!-- Lesson 0002 -->
+        <a href="lessons/0002-kigo-and-senryu.html" class="lesson-item-card">
+          <div class="lic-main">
+            <span class="lic-num">Chapter II</span>
+            <div>
+              <div class="lic-title">The Seasonal Soul &amp; The Human Mirror</div>
+              <div class="lic-desc">Seasonal compression algorithms (kigo), image distance calibration, and the line between haiku and senryu.</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <span style="font-family: var(--font-mono); font-size: 13px; color: var(--text-muted);">4:10</span>
+            <span class="lic-badge badge-mastered">&#10003; Mastered</span>
+          </div>
+        </a>
+
+        <!-- Lesson 0003 -->
+        <a href="lessons/0003-shasei-and-wabi-sabi.html" class="lesson-item-card">
+          <div class="lic-main">
+            <span class="lic-num">Chapter III</span>
+            <div>
+              <div class="lic-title">The Art of Seeing: Shasei, Wabi-Sabi &amp; Ichibutsu-jitate</div>
+              <div class="lic-desc">Masaoka Shiki's life-sketching revolution, finding the sacred in the weathered, and the single-object poem.</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <span style="font-family: var(--font-mono); font-size: 13px; color: var(--accent-blue); font-weight: 700;">4:35</span>
+            <span class="lic-badge badge-active">Play Audio &#9654;</span>
+          </div>
+        </a>
+
+        <!-- Lesson 0004 (Upcoming) -->
+        <div class="lesson-item-card upcoming">
+          <div class="lic-main">
+            <span class="lic-num" style="color: var(--text-muted);">Chapter IV</span>
+            <div>
+              <div class="lic-title" style="color: var(--text-muted);">The Micro-Seasonal Saijiki: 72 Pentads &amp; Ginko</div>
+              <div class="lic-desc">Deep seasonal diving, 5-day micro-seasons, and field walking composition techniques.</div>
+            </div>
+          </div>
+          <span class="lic-badge badge-upcoming">Upcoming Roadmap</span>
+        </div>
+
+        <!-- Lesson 0005 (Upcoming) -->
+        <div class="lesson-item-card upcoming">
+          <div class="lic-main">
+            <span class="lic-num" style="color: var(--text-muted);">Chapter V</span>
+            <div>
+              <div class="lic-title" style="color: var(--text-muted);">Haibun &amp; The Journey: Weaving Prose with Epiphanic Verse</div>
+              <div class="lic-desc">Bashō's travelogue masterworks, pairing austere autobiographical prose with culminating haiku.</div>
+            </div>
+          </div>
+          <span class="lic-badge badge-upcoming">Upcoming Roadmap</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Canonical Glossary & Interactive Flashcards Practice Deck -->
+    <section class="flashcard-section" aria-label="Interactive Vocabulary Retrieval Deck">
+      <div class="flashcard-header">
+        <div>
+          <div class="flashcard-title">Canonical Lexicon &bull; Flashcard Retrieval Practice</div>
+          <p style="font-size: 14px; color: var(--text-muted); font-style: italic; margin-top: 2px;">
+            Active retrieval builds storage strength. Spacebar or click to flip; arrow keys or buttons to step.
+          </p>
+        </div>
+        <div class="flashcard-category-tabs">
+          <button class="fc-tab-btn active" data-cat="all">All (13)</button>
+          <button class="fc-tab-btn" data-cat="mechanics">Mechanics</button>
+          <button class="fc-tab-btn" data-cat="strategy">Strategy</button>
+          <button class="fc-tab-btn" data-cat="aesthetics">Aesthetics</button>
+        </div>
+      </div>
+
+      <!-- 3D Flipping Flashcard -->
+      <div class="flashcard-scene" id="fc-scene" tabindex="0" role="region" aria-label="Flashcard">
+        <div class="flashcard-3d" id="fc-card">
+          <!-- Card Front -->
+          <div class="flashcard-face front">
+            <div class="fc-hint-pill" id="fc-front-cat">Structural Mechanics</div>
+            <div class="fc-term-kanji" id="fc-front-kanji">音</div>
+            <div class="fc-term-romaji" id="fc-front-romaji">On (音 / Onji)</div>
+            <div style="margin: 6px 0 10px 0;">
+              <button type="button" class="fc-pronounce-btn" id="fc-audio-btn-front" title="Listen to Japanese pronunciation">
+                <span class="fc-audio-icon">&#128266;</span> <span id="fc-audio-label-front">Pronounce (おん)</span>
+              </button>
+            </div>
+            <div style="font-size: 13px; color: var(--text-muted); font-style: italic;">[ Click card or press Space to reveal definition ]</div>
+          </div>
+          <!-- Card Back -->
+          <div class="flashcard-face back">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 8px;">
+              <div class="fc-term-romaji" id="fc-back-title" style="margin-bottom: 0;">On (音 / Onji)</div>
+              <button type="button" class="fc-pronounce-btn mini" id="fc-audio-btn-back" title="Listen to Japanese pronunciation">
+                <span class="fc-audio-icon">&#128266;</span> <span id="fc-audio-label-back">おん</span>
+              </button>
+            </div>
+            <div class="fc-definition-text" id="fc-back-def">
+              A Japanese phonetic time unit (mora) that measures acoustic duration. A single English syllable typically contains 1.5 to 2 Japanese on.
+            </div>
+            <div>
+              <span class="fc-avoid-pill" id="fc-back-avoid">Avoid: Syllables, beats, word count</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls Row -->
+      <div class="flashcard-controls-row">
+        <button id="fc-prev-btn" class="fc-btn">&larr; Previous</button>
+        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+          <button id="fc-flip-btn" class="fc-btn" style="background: var(--accent-gold-light); border-color: var(--accent-gold); color: var(--accent-gold); font-weight: 700;">&#8644; Flip Card</button>
+          <button id="fc-audio-btn-ctrl" class="fc-btn" style="color: var(--accent-gold); font-weight: 600;" title="Listen to pronunciation (Key: P)">&#128266; Pronounce</button>
+          <button id="fc-shuffle-btn" class="fc-btn">&#9854; Shuffle</button>
+          <button id="fc-master-btn" class="fc-btn" style="color: var(--accent-green);">&#10003; Mark Mastered</button>
+        </div>
+        <div class="fc-counter-badge" id="fc-counter">1 of 13</div>
+        <button id="fc-next-btn" class="fc-btn">Next &rarr;</button>
+      </div>
+
+      <!-- Link to Complete Glossary -->
+      <div style="text-align: center; margin-top: 20px; font-size: 14px; font-family: var(--font-sans);">
+        <a href="glossary.html" style="color: var(--accent-blue); text-decoration: underline;">Read Full Canonical Glossary with Historical Etymologies &rarr;</a>
+      </div>
+    </section>
+
+    <!-- Compendia & Reference Sheets Surfacing -->
+    <section style="margin: 40px 0;">
+      <div class="section-label">Compendia, Plates &amp; Curated Knowledge</div>
+
+      <div class="compendia-grid">
+        <a href="reference/poetic-imagery-cheatsheet.html" class="compendium-card">
+          <div>
+            <div class="comp-badge">Plate Catalog &bull; Appendix A</div>
+            <div class="comp-title">Poetic Imagery &amp; Sensory Anchors</div>
+            <div class="comp-desc">30 distilled natural objects, weather events, and hours of time paired with ready-to-cut poetic one-liners.</div>
+          </div>
+          <div style="margin-top: 14px; font-family: var(--font-sans); font-size: 13px; color: var(--accent-blue); font-weight: 600;">
+            Browse Sensory Plates &rarr;
+          </div>
+        </a>
+
+        <a href="reference/haiku-quick-reference.html" class="compendium-card">
+          <div>
+            <div class="comp-badge">Printable Matrix &bull; Appendix B</div>
+            <div class="comp-title">Composition Matrix &amp; Formulas</div>
+            <div class="comp-desc">The 3-Beat Snapshot formula, deep resonant cut method, syllable trap diagnostics, and benchmark masterworks.</div>
+          </div>
+          <div style="margin-top: 14px; font-family: var(--font-sans); font-size: 13px; color: var(--accent-blue); font-weight: 600;">
+            View Quick Reference Sheet &rarr;
+          </div>
+        </a>
+
+        <a href="glossary.html" class="compendium-card">
+          <div>
+            <div class="comp-badge">Canonical Lexicon &bull; Appendix C</div>
+            <div class="comp-title">Haiku Poetics Glossary</div>
+            <div class="comp-desc">Authoritative definitions for On, Kireji, Kigo, Saijiki, Toriawase, Yohaku, Shasei, Wabi-Sabi, and Senryu.</div>
+          </div>
+          <div style="margin-top: 14px; font-family: var(--font-sans); font-size: 13px; color: var(--accent-blue); font-weight: 600;">
+            Open Glossary &rarr;
+          </div>
+        </a>
+
+        <a href="resources.html" class="compendium-card">
+          <div>
+            <div class="comp-badge">Verified Sources &bull; Appendix D</div>
+            <div class="comp-title">Knowledge Sources &amp; Circles</div>
+            <div class="comp-desc">Curated high-trust manuals (Higginson, Shirane) and active practitioner communities (Haiku Foundation, Modern Haiku).</div>
+          </div>
+          <div style="margin-top: 14px; font-family: var(--font-sans); font-size: 13px; color: var(--accent-blue); font-weight: 600;">
+            Browse Library &rarr;
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- The Scriptorium (Haiku Drafting Desk) -->
+    <section class="scriptorium" aria-label="Interactive Haiku Drafting Desk">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 10px;">
+        <div>
+          <div class="scriptorium-title">The Scriptorium &bull; Practice Desk</div>
+          <p style="font-size: 14px; color: var(--text-muted); font-style: italic; margin-top: 2px;">
+            Draft 3-line verse with acoustic cadence estimation and sensory imagery seeds.
+          </p>
+        </div>
+        <button id="desk-prompt-btn" class="book-btn">&#9854; Draw Random Imagery Seed</button>
+      </div>
+
+      <div id="desk-prompt-box" class="prompt-banner">
+        Imagery Seed: <strong>Morning Frost</strong> &mdash; <em>&ldquo;A silver skin tightening over the quiet grass.&rdquo;</em>
+      </div>
+
+      <div>
+        <div class="line-row">
+          <input type="text" id="desk-l1" class="verse-input" placeholder="Line 1: Anchor &mdash; Where or When" value="morning frost &mdash;">
+          <div id="desk-s1" class="meter-pill">3 morae</div>
+        </div>
+        <div class="line-row">
+          <input type="text" id="desk-l2" class="verse-input" placeholder="Line 2: Movement &mdash; What Occurs" value="a crow snaps a pine twig,">
+          <div id="desk-s2" class="meter-pill">6 morae</div>
+        </div>
+        <div class="line-row">
+          <input type="text" id="desk-l3" class="verse-input" placeholder="Line 3: Echo &mdash; What Lingers" value="the sharp snap in cold air">
+          <div id="desk-s3" class="meter-pill">6 morae</div>
+        </div>
+      </div>
+
+      <div class="scriptorium-footer">
+        <span id="desk-total-meter">Total Cadence: <strong>15 morae (12 syllables)</strong> &mdash; Balanced breath</span>
+        <button id="desk-clear-btn" style="background: transparent; border: none; color: var(--text-muted); text-decoration: underline; cursor: pointer; font-size: 12px;">Clear Lines</button>
+      </div>
+    </section>
+
+    <!-- Running Footer -->
+    <footer style="margin-top: 50px; padding-top: 24px; border-top: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; font-family: var(--font-sans); font-size: 13px; color: var(--text-faint); flex-wrap: wrap; gap: 12px;">
+      <div>&copy; 2026 The Haiku Studio &bull; Master Edition</div>
+      <div>Designed for eyes-free spoken audio &amp; ears-free visual reference</div>
+    </footer>
+  </div>
+
+  <!-- Scriptorium & Flashcard Logic -->
+  <script>
+  (function() {
+    // --- Glossary Flashcards Data ---
+    const termsData = [
+      { id: "on", kanji: "音", hiragana: "おん", romaji: "On (音 / Onji)", audio: "assets/audio/words/on.m4a", cat: "mechanics", catLabel: "Structural Mechanics", def: "A Japanese phonetic time unit (mora) that measures acoustic duration. A single English syllable typically contains 1.5 to 2 Japanese on.", avoid: "Syllables, beats, word count" },
+      { id: "kireji", kanji: "切れ字", hiragana: "きれじ", romaji: "Kireji (切れ字)", audio: "assets/audio/words/kireji.m4a", cat: "mechanics", catLabel: "Structural Mechanics", def: "A structural 'cutting word' (or in English, a dash, colon, ellipsis, or line break) that bisects the poem into two distinct syntactic and perceptual planes.", avoid: "Punctuation mark, pause button" },
+      { id: "kigo", kanji: "季語", hiragana: "きご", romaji: "Kigo (季語)", audio: "assets/audio/words/kigo.m4a", cat: "mechanics", catLabel: "Structural Mechanics", def: "A designated seasonal word or phrase that anchors the poem in an ecological calendar and invokes shared cultural memory.", avoid: "Weather word, nature tag" },
+      { id: "saijiki", kanji: "歳時記", hiragana: "さいじき", romaji: "Saijiki (歳時記)", audio: "assets/audio/words/saijiki.m4a", cat: "mechanics", catLabel: "Structural Mechanics", def: "An organized compendium or almanac of recognized kigo, indexed by the four traditional seasons plus the New Year.", avoid: "Haiku dictionary, rhyming dictionary" },
+      { id: "teikei", kanji: "定型", hiragana: "ていけい", romaji: "Teikei (定型)", audio: "assets/audio/words/teikei.m4a", cat: "mechanics", catLabel: "Structural Mechanics", def: "The traditional fixed formal pattern of 5-7-5 phonetic units (on). Modern English haiku prioritizes 10–14 syllables.", avoid: "Haiku meter, rigid rule" },
+      { id: "toriawase", kanji: "取り合わせ", hiragana: "とりあわせ", romaji: "Toriawase (取り合わせ)", audio: "assets/audio/words/toriawase.m4a", cat: "strategy", catLabel: "Compositional Strategy", def: "The juxtaposition of two disparate, independent sensory images that create a cognitive spark or third unwritten meaning across the kireji.", avoid: "Contrast, collage, comparison" },
+      { id: "ichibutsu-jitate", kanji: "一物仕立て", hiragana: "いちぶつじたて", romaji: "Ichibutsu-jitate (一物仕立て)", audio: "assets/audio/words/ichibutsu-jitate.m4a", cat: "strategy", catLabel: "Compositional Strategy", def: "A 'one-thing composition' focusing entirely on a single subject across its internal transformation without an overt juxtaposition.", avoid: "Single-topic poem, flat description" },
+      { id: "yohaku", kanji: "余白", hiragana: "よはく", romaji: "Yohaku (余白)", audio: "assets/audio/words/yohaku.m4a", cat: "strategy", catLabel: "Compositional Strategy", def: "The pregnant 'empty white space' or unspoken resonance left behind for the reader's imagination to complete.", avoid: "Blank space, vagueness, ambiguity" },
+      { id: "shasei", kanji: "写生", hiragana: "しゃせい", romaji: "Shasei (写生)", audio: "assets/audio/words/shasei.m4a", cat: "strategy", catLabel: "Compositional Strategy", def: "Sketching directly from life; objective observation of empirical sensory phenomena without emotional editorializing or poetic embellishment.", avoid: "Realistic writing, nature journaling" },
+      { id: "mono-no-aware", kanji: "物の哀れ", hiragana: "もののあわれ", romaji: "Mono no aware (物の哀れ)", audio: "assets/audio/words/mono-no-aware.m4a", cat: "aesthetics", catLabel: "Aesthetic Sensibility", def: "A poignant, gentle awareness of the transience and impermanence of all worldly things.", avoid: "Sadness, depression, nostalgia" },
+      { id: "wabi-sabi", kanji: "侘寂", hiragana: "わびさび", romaji: "Wabi-sabi (侘寂)", audio: "assets/audio/words/wabi-sabi.m4a", cat: "aesthetics", catLabel: "Aesthetic Sensibility", def: "An aesthetic celebrating rustic simplicity, quiet austerity, imperfection, and the natural patina of time.", avoid: "Vintage vibe, rustic chic" },
+      { id: "karumi", kanji: "軽み", hiragana: "かるみ", romaji: "Karumi (軽み)", audio: "assets/audio/words/karumi.m4a", cat: "aesthetics", catLabel: "Aesthetic Sensibility", def: "A quality of lightness, casualness, and unforced ease championed by Bashō in his late years.", avoid: "Triviality, silliness, fluff" },
+      { id: "senryu", kanji: "川柳", hiragana: "せんりゅう", romaji: "Senryu (川柳)", audio: "assets/audio/words/senryu.m4a", cat: "aesthetics", catLabel: "Aesthetic Sensibility", def: "A 3-line poetic form identical in structure to haiku, but centered on human foibles, irony, humor, and domestic absurdity rather than nature or season.", avoid: "Funny haiku, satirical poem" }
+    ];
+
+    let currentCat = "all";
+    let activeDeck = [...termsData];
+    let currentIndex = 0;
+    let isFlipped = false;
+    const masteredIds = new Set();
+    let currentWordAudio = null;
+
+    const cardEl = document.getElementById("fc-card");
+    const frontCatEl = document.getElementById("fc-front-cat");
+    const frontKanjiEl = document.getElementById("fc-front-kanji");
+    const frontRomajiEl = document.getElementById("fc-front-romaji");
+    const frontAudioLabel = document.getElementById("fc-audio-label-front");
+    const backTitleEl = document.getElementById("fc-back-title");
+    const backAudioLabel = document.getElementById("fc-audio-label-back");
+    const backDefEl = document.getElementById("fc-back-def");
+    const backAvoidEl = document.getElementById("fc-back-avoid");
+    const counterEl = document.getElementById("fc-counter");
+    const sceneEl = document.getElementById("fc-scene");
+
+    function stopWordAudio() {
+      if (currentWordAudio) {
+        currentWordAudio.pause();
+        currentWordAudio.currentTime = 0;
+        currentWordAudio = null;
+      }
+      [
+        document.getElementById("fc-audio-btn-front"),
+        document.getElementById("fc-audio-btn-back"),
+        document.getElementById("fc-audio-btn-ctrl")
+      ].forEach(b => { if (b) b.classList.remove("playing"); });
+    }
+
+    function playWordAudio(e) {
+      if (e) {
+        e.stopPropagation();
+      }
+      const t = activeDeck[currentIndex];
+      if (!t || !t.audio) return;
+
+      stopWordAudio();
+
+      const audio = new Audio(t.audio);
+      currentWordAudio = audio;
+
+      const btns = [
+        document.getElementById("fc-audio-btn-front"),
+        document.getElementById("fc-audio-btn-back"),
+        document.getElementById("fc-audio-btn-ctrl")
+      ].filter(Boolean);
+
+      btns.forEach(b => b.classList.add("playing"));
+
+      audio.onended = () => {
+        btns.forEach(b => b.classList.remove("playing"));
+        currentWordAudio = null;
+      };
+      audio.onerror = () => {
+        btns.forEach(b => b.classList.remove("playing"));
+        currentWordAudio = null;
+      };
+
+      audio.play().catch(() => {
+        btns.forEach(b => b.classList.remove("playing"));
+      });
+    }
+
+    function renderCard() {
+      if (activeDeck.length === 0) return;
+      stopWordAudio();
+      const t = activeDeck[currentIndex];
+      isFlipped = false;
+      cardEl.classList.remove("is-flipped");
+
+      frontCatEl.textContent = t.catLabel;
+      frontKanjiEl.textContent = t.kanji;
+      frontRomajiEl.textContent = t.romaji;
+      if (frontAudioLabel) frontAudioLabel.textContent = `Pronounce (${t.hiragana})`;
+
+      backTitleEl.textContent = t.romaji;
+      if (backAudioLabel) backAudioLabel.textContent = t.hiragana;
+      backDefEl.textContent = t.def;
+      backAvoidEl.textContent = "Avoid: " + t.avoid;
+
+      const isMastered = masteredIds.has(t.id);
+      counterEl.textContent = `${currentIndex + 1} of ${activeDeck.length} ${isMastered ? "★" : ""}`;
+      const masterBtn = document.getElementById("fc-master-btn");
+      if (masterBtn) {
+        masterBtn.textContent = isMastered ? "★ Mastered" : "✓ Mark Mastered";
+        masterBtn.style.color = isMastered ? "#b45309" : "#15803d";
+      }
+    }
+
+    function toggleFlip() {
+      isFlipped = !isFlipped;
+      cardEl.classList.toggle("is-flipped", isFlipped);
+    }
+
+    function nextCard() {
+      if (activeDeck.length === 0) return;
+      currentIndex = (currentIndex + 1) % activeDeck.length;
+      renderCard();
+    }
+
+    function prevCard() {
+      if (activeDeck.length === 0) return;
+      currentIndex = (currentIndex - 1 + activeDeck.length) % activeDeck.length;
+      renderCard();
+    }
+
+    function shuffleDeck() {
+      for (let i = activeDeck.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [activeDeck[i], activeDeck[j]] = [activeDeck[j], activeDeck[i]];
+      }
+      currentIndex = 0;
+      renderCard();
+    }
+
+    // Category tabs
+    document.querySelectorAll(".fc-tab-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".fc-tab-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        currentCat = btn.getAttribute("data-cat");
+        if (currentCat === "all") {
+          activeDeck = [...termsData];
+        } else {
+          activeDeck = termsData.filter(t => t.cat === currentCat);
+        }
+        currentIndex = 0;
+        renderCard();
+      });
+    });
+
+    document.getElementById("fc-flip-btn").addEventListener("click", toggleFlip);
+    cardEl.addEventListener("click", toggleFlip);
+    document.getElementById("fc-next-btn").addEventListener("click", nextCard);
+    document.getElementById("fc-prev-btn").addEventListener("click", prevCard);
+    document.getElementById("fc-shuffle-btn").addEventListener("click", shuffleDeck);
+
+    // Audio pronunciation button listeners (with stopPropagation)
+    const audioBtnFront = document.getElementById("fc-audio-btn-front");
+    if (audioBtnFront) audioBtnFront.addEventListener("click", playWordAudio);
+    const audioBtnBack = document.getElementById("fc-audio-btn-back");
+    if (audioBtnBack) audioBtnBack.addEventListener("click", playWordAudio);
+    const audioBtnCtrl = document.getElementById("fc-audio-btn-ctrl");
+    if (audioBtnCtrl) audioBtnCtrl.addEventListener("click", playWordAudio);
+
+    document.getElementById("fc-master-btn").addEventListener("click", () => {
+      const t = activeDeck[currentIndex];
+      if (masteredIds.has(t.id)) {
+        masteredIds.delete(t.id);
+      } else {
+        masteredIds.add(t.id);
+      }
+      renderCard();
+    });
+
+    // Keyboard support: Space to flip, Arrow keys to navigate, P to pronounce
+    window.addEventListener("keydown", (e) => {
+      if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
+      if (e.code === "Space") {
+        e.preventDefault();
+        toggleFlip();
+      } else if (e.code === "ArrowRight") {
+        nextCard();
+      } else if (e.code === "ArrowLeft") {
+        prevCard();
+      } else if (e.code === "KeyP") {
+        e.preventDefault();
+        playWordAudio();
+      }
+    });
+
+    renderCard();
+
+    // --- Scriptorium Morae Counting & Seeds ---
+    const seeds = [
+      { anchor: "Morning Frost", line: "A silver skin tightening over the quiet grass." },
+      { anchor: "Persimmon", line: "Heavy orange lanterns bowing bare November boughs." },
+      { anchor: "Temple Bell", line: "Cold bronze waiting for the strike of midnight snow." },
+      { anchor: "Cicada Husk", line: "Amber armor clinging to pine bark, hollowed by sun." },
+      { anchor: "River Eddy", line: "A dry birch leaf spinning until it strikes the sunken stone." },
+      { anchor: "Peeling Paint", line: "Sun-bleached cedar shingles drinking the autumn drizzle." }
+    ];
+
+    function estimateMorae(text) {
+      if (!text || !text.trim()) return 0;
+      const clean = text.toLowerCase().replace(/[^a-z0-9\s]/g, " ").trim();
+      if (!clean) return 0;
+      const words = clean.split(/\s+/);
+      let count = 0;
+      for (const w of words) {
+        if (!w) continue;
+        const matches = w.match(/[aeiouy]{1,2}/g);
+        let s = matches ? matches.length : 1;
+        if (w.length > 2 && w.endsWith("e") && !w.endsWith("le") && !w.endsWith("ee")) {
+          s = Math.max(1, s - 1);
+        }
+        count += Math.round(s * 1.25);
+      }
+      return Math.max(1, count);
+    }
+
+    function updateDesk() {
+      const l1 = document.getElementById("desk-l1").value;
+      const l2 = document.getElementById("desk-l2").value;
+      const l3 = document.getElementById("desk-l3").value;
+
+      const m1 = estimateMorae(l1);
+      const m2 = estimateMorae(l2);
+      const m3 = estimateMorae(l3);
+
+      document.getElementById("desk-s1").textContent = m1 ? m1 + " morae" : "—";
+      document.getElementById("desk-s2").textContent = m2 ? m2 + " morae" : "—";
+      document.getElementById("desk-s3").textContent = m3 ? m3 + " morae" : "—";
+
+      const total = m1 + m2 + m3;
+      let cadenceTag = "Drafting...";
+      if (total >= 10 && total <= 14) {
+        cadenceTag = "Optimal English Haiku Cadence (Single Breath)";
+      } else if (total > 0 && total < 10) {
+        cadenceTag = "Minimalist / Sparse Cadence";
+      } else if (total > 14 && total <= 17) {
+        cadenceTag = "Classical 17 Morae Maximum Boundary";
+      } else if (total > 17) {
+        cadenceTag = "Exceeds Classical Bounds (Check for filler words)";
+      }
+      document.getElementById("desk-total-meter").innerHTML = `Total Cadence: <strong>${total} morae</strong> &mdash; ${cadenceTag}`;
+    }
+
+    ["desk-l1", "desk-l2", "desk-l3"].forEach(id => {
+      document.getElementById(id).addEventListener("input", updateDesk);
+    });
+
+    document.getElementById("desk-prompt-btn").addEventListener("click", () => {
+      const r = seeds[Math.floor(Math.random() * seeds.length)];
+      document.getElementById("desk-prompt-box").innerHTML = `Imagery Seed: <strong>${r.anchor}</strong> &mdash; <em>&ldquo;${r.line}&rdquo;</em>`;
+    });
+
+    document.getElementById("desk-clear-btn").addEventListener("click", () => {
+      document.getElementById("desk-l1").value = "";
+      document.getElementById("desk-l2").value = "";
+      document.getElementById("desk-l3").value = "";
+      updateDesk();
+    });
+
+    updateDesk();
+  })();
+  </script>
+  <script src="assets/pronounce.js"></script>
+</body>
+</html>
